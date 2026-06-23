@@ -1,4 +1,4 @@
-// JUAN STORE - Main JavaScript (CORREGIDO FILTROS + WHATSAPP)
+// JUAN STORE - Main JavaScript
 let allProducts = [];
 let filteredProducts = [];
 let cart = [];
@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLightbox();
     initCart();
     initFilters();
+    initCarousel();
 });
 
 function loadProducts() {
@@ -59,7 +60,7 @@ function displayCatalog(products) {
                 '<div class=\"product-brand\">' + product.brand + '</div>' +
                 '<div class=\"product-name\">' + product.name + '</div>' +
                 '<div class=\"product-price\">' + formatPrice(product.price) + '</div>' +
-                '<div class=\"product-sizes\">Tallas:allas: ' + product.sizes + '</div>' +
+                '<div class=\"product-sizes\">Tallas: ' + product.sizes + '</div>' +
                 noteHtml +
                 '<button class=\"add-to-cart\" onclick=\"event.stopPropagation(); addToCart(' + product.id + ')\" style=\"margin-top:0.8rem;width:100%;padding:0.6rem;background:var(--black);color:white;border:none;border-radius:6px;font-weight:600;cursor:pointer;\"><i class=\"fas fa-cart-plus\"></i> Agregar al carrito</button>' +
             '</div>' +
@@ -72,7 +73,6 @@ function formatPrice(price) {
     return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(price);
 }
 
-// ============= FILTROS =============
 function populateFilters(products) {
     const brands = [...new Set(products.map(p => p.brand).filter(Boolean))].sort();
     const brandSelect = document.getElementById('filterBrand');
@@ -96,7 +96,7 @@ function populateFilters(products) {
         [...sizes].sort((a,b) => parseInt(a) - parseInt(b)).forEach(s => {
             const opt = document.createElement('option');
             opt.value = s;
-            opt.textContent = 'uro ' + s;
+            opt.textContent = 'Euro ' + s;
             sizeSelect.appendChild(opt);
         });
     }
@@ -154,7 +154,6 @@ function populateBrands(products) {
     if (grid) grid.innerHTML = brands.map(b => '<span>' + b + '</span>').join('');
 }
 
-// ============= LIGHTBOX =============
 function initLightbox() {
     const lightbox = document.getElementById('lightbox');
     const closeBtn = document.getElementById('lightboxClose');
@@ -183,7 +182,7 @@ function openLightbox(productId) {
     const info = document.getElementById('lightboxInfo');
     img.src = 'images/' + product.image;
     img.alt = product.name;
-    info.innerHTML = '<h4>' + product.name + '</h4><p>' + product.brand + ' | ' + formatPrice(product.price) + ' | ?llas: ' + product.sizes + (product.note ? ' | ' + product.note : '') + '</p>';
+    info.innerHTML = '<h4>' + product.name + '</h4><p>' + product.brand + ' | ' + formatPrice(product.price) + ' | Tallas: ' + product.sizes + (product.note ? ' | ' + product.note : '') + '</p>';
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -198,7 +197,6 @@ function navigateLightbox(dir) {
     openLightbox(allProducts[currentLightboxIndex].id);
 }
 
-// ============= CARRITO =============
 const WHATSAPP_NUMBER = '573247432471';
 
 function initCart() {
@@ -255,7 +253,7 @@ function updateQty(productId, delta) {
     const item = cart.find(i => i.id === productId);
     if (!item) return;
     item.qty += delta;
-    if (item.qty <= 0) removeFromCart(productId);
+    if (item.qty <= 0) removeFromCart(productId(productId);
     else { saveCart(); updateCartUI(); }
 }
 
@@ -302,6 +300,12 @@ function updateCartUI() {
     }
 }
 
+function removeFromCart(productId) {
+    cart = cart.filter(item => item.id !== productId);
+    saveCart();
+    updateCartUI();
+}
+
 function clearCart() {
     cart = [];
     saveCart();
@@ -319,7 +323,7 @@ function checkoutWhatsApp() {
         const subtotal = item.price * item.qty;
         total += subtotal;
         message += (i+1) + '. ' + item.name + ' (' + item.brand + ')\n';
-        message += '   Ref: ' + (item.ref || 'N/A') + ' | ?llas: ' + item.sizes + '\n';
+        message += '   Ref: ' + (item.ref || 'N/A') + ' | Tallas: ' + item.sizes + '\n';
         message += '   Cantidad: ' + item.qty + ' x ' + formatPrice(item.price) + ' = ' + formatPrice(subtotal) + '\n\n';
     });
     
@@ -334,7 +338,6 @@ function checkoutWhatsApp() {
     showToast('Abriendo WhatsApp...', 'success');
 }
 
-// ============= TOAST =============
 function showToast(message, type = 'success') {
     const container = document.getElementById('toastContainer');
     if (!container) return;
@@ -345,7 +348,6 @@ function showToast(message, type = 'success') {
     setTimeout(() => { toast.style.animation = 'slideIn 0.3s ease reverse'; setTimeout(() => toast.remove(), 300); }, 3000);
 }
 
-// ============= SCROLL ANIMATIONS =============
 function initScrollAnimations() {
     const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
     const observer = new IntersectionObserver((entries) => {
@@ -369,16 +371,6 @@ function initHeaderScroll() {
     });
 }
 
-// ============= SMOOTH SCROLL =============
-document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
-
-// ============= HERO CAROUSEL =============
 function initCarousel() {
     const carousel = document.getElementById('heroBgCarousel');
     const dotsContainer = document.getElementById('carouselDots');
@@ -389,7 +381,6 @@ function initCarousel() {
     let currentSlide = 0;
     let carouselInterval;
     
-    // Create dots
     slides.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
@@ -422,29 +413,16 @@ function initCarousel() {
         clearInterval(carouselInterval);
     }
     
-    // Pause on hover
-    const carousel = document.getElementById('heroBgCarousel');
-    if (carousel) {
-        carousel.addEventListener('mouseenter', stopCarousel);
-        carousel.addEventListener('mouseleave', startCarousel);
-    }
+    carousel.addEventListener('mouseenter', stopCarousel);
+    carousel.addEventListener('mouseleave', startCarousel);
     
-    // Start
     startCarousel();
 }
 
-// Add to DOMContentLoaded
-const originalInit = document.getElementById('heroBgCarousel') ? true : false;
-if (originalInit) {
-    const oldOnLoad = window.onload;
-    window.onload = function() {
-        if (oldOnLoad) oldOnLoad();
-        initCarousel();
-    };
-}
-
-// Or add to existing DOMContentLoaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Small delay to ensure DOM is ready
-    setTimeout(initCarousel, 100);
+document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 });
