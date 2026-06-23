@@ -1,4 +1,4 @@
-// JUAN STORE - Main JavaScript
+// JUAN STORE - Main JavaScript (CORREGIDO FILTROS)
 let allProducts = [];
 let filteredProducts = [];
 let cart = [];
@@ -14,15 +14,18 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function loadProducts() {
+    console.log('Cargando productos...');
     fetch('products.json')
         .then(response => response.json())
         .then(data => {
             allProducts = data.products;
             filteredProducts = [...allProducts];
+            console.log('Productos cargados:', allProducts.length);
             displayShowcase(allProducts);
             displayCatalog(allProducts);
             populateFilters(allProducts);
             populateBrands(allProducts);
+            updateResultsCount();
         })
         .catch(error => console.error('Error loading products:', error));
 }
@@ -69,10 +72,10 @@ function formatPrice(price) {
     return new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(price);
 }
 
-// ============= FILTROS =============
+// ============= FILTROS - CORREGIDO =============
 function populateFilters(products) {
     // Marcas únicas
-    const brands = [...new Set(products.map(p => p.brand))].sort();
+    const brands = [...new Set(products.map(p => p.brand).filter(Boolean))].sort();
     const brandSelect = document.getElementById('filterBrand');
     if (brandSelect) {
         brands.forEach(b => {
@@ -85,12 +88,14 @@ function populateFilters(products) {
     // Tallas únicas (extraer números)
     const sizes = new Set();
     products.forEach(p => {
-        const nums = p.sizes.match(/\d+/g);
-        if (nums) nums.forEach(n => sizes.add(parseInt(n)));
+        if (p.sizes) {
+            const nums = p.sizes.match(/\d+/g);
+            if (nums) nums.forEach(n => sizes.add(n));
+        }
     });
     const sizeSelect = document.getElementById('filterSize');
     if (sizeSelect) {
-        [...sizes].sort((a,b)=>a-b).forEach(s => {
+        [...sizes].sort((a,b) => parseInt(a) - parseInt(b)).forEach(s => {
             const opt = document.createElement('option');
             opt.value = s;
             opt.textContent = 'Euro ' + s;
@@ -100,32 +105,42 @@ function populateFilters(products) {
     // Event listeners
     ['filterBrand','filterCategory','filterPrice','filterSize'].forEach(id => {
         const el = document.getElementById(id);
-        if (el) el.addEventListener('change', applyFilters);
+        if (el) {
+            el.addEventListener('change', applyFilters);
+            console.log('Listener added to:', id);
+        } else {
+            console.warn('Element not found:', id);
+        }
     });
-    document.getElementById('clearFilters')?.addEventListener('click', clearFilters);
+    const clearBtn = document.getElementById('clearFilters');
+    if (clearBtn) clearBtn.addEventListener('click', clearFilters);
 }
 
 function applyFilters() {
-    const brand = document.getElementById('filterBrand').value;
-    const category = document.getElementById('filterCategory').value;
-    const priceRange = document.getElementById('filterPrice').value;
-    const size = document.getElementById('filterSize').value;
+    const brand = document.getElementById('filterBrand')?.value || '';
+    const category = document.getElementById('filterCategory')?.value || '';
+    const priceRange = document.getElementById('filterPrice')?.value || '';
+    const size = document.getElementById('filterSize')?.value || '';
+
+    console.log('Filtros aplicados:', { brand, category, priceRange, size });
 
     filteredProducts = allProducts.filter(p => {
         if (brand && p.brand !== brand) return false;
         if (category && p.category !== category) return false;
         if (priceRange) {
-            const [min, max] = priceRange.split('-').map(Number);
-            if (max && (p.price < min || p.price > max)) return false;
-            if (!max && p.price < min) return false;
+            const parts = priceRange.split('-');
+            const min = parseInt(parts[0]) || 0;
+            const max = parseInt(parts[1]) || Infinity;
+            if (p.price < min || p.price > max) return false;
         }
         if (size) {
-            const nums = p.sizes.match(/\d+/g);
+            const nums = (p.sizes || '').match(/\d+/g);
             if (!nums || !nums.includes(size)) return false;
         }
         return true;
     });
 
+    console.log('Productos filtrados:', filteredProducts.length);
     displayCatalog(filteredProducts);
     updateResultsCount();
 }
@@ -146,7 +161,7 @@ function updateResultsCount() {
 }
 
 function populateBrands(products) {
-    const brands = [...new Set(products.map(p => p.brand))].sort();
+    const brands = [...new Set(products.map(p => p.brand).filter(Boolean))].sort();
     const grid = document.getElementById('brandsGrid');
     if (grid) grid.innerHTML = brands.map(b => '<span>' + b + '</span>').join('');
 }
@@ -209,8 +224,7 @@ function initCart() {
     checkoutBtn?.addEventListener('click', checkoutWhatsApp);
     clearCartBtn?.addEventListener('click', clearCart);
 
-    // Cargar carrito de localStorage
-    const saved = localStorage.getItem('juanstore_cart');
+    const saved = localStorage.getItem('victoria79_cart');
     if (saved) cart = JSON.parse(saved);
     updateCartUI();
 }
@@ -256,7 +270,7 @@ function updateQty(productId, delta) {
 }
 
 function saveCart() {
-    localStorage.setItem('juanstore_cart', JSON.stringify(cart));
+    localStorage.setItem('victoria79_cart', JSON.stringify(cart));
 }
 
 function updateCartUI() {
@@ -307,7 +321,7 @@ function clearCart() {
 
 function checkoutWhatsApp() {
     if (cart.length === 0) return;
-    let message = 'Hola Juan Store! Quiero hacer este pedido:%0A%0A';
+    let message = 'Hola Victoria 79! Quiero hacer este pedido:%0A%0A';
     let total = 0;
     cart.forEach((item, i) => {
         const subtotal = item.price * item.qty;
