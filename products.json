@@ -25,6 +25,17 @@
                      {
                          "image":  "IMG-20260115-WA0074.jpg",
                          "id":  3,
+                         "sizes":  "Euro 32",
+                         "price":  60000,
+                         "category":  "Niño",
+                         "ref":  "5692",
+                         "name":  "Nike Skate Kids",
+                         "brand":  "Nike",
+                         "note":  ""
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0075.jpg",
+                         "id":  4,
                          "sizes":  "Euro 36 al 39",
                          "price":  20000,
                          "category":  "Mujer",
@@ -34,8 +45,19 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0075.jpg",
-                         "id":  4,
+                         "image":  "IMG-20260115-WA0076.jpg",
+                         "id":  5,
+                         "sizes":  "Euro 36 al 39",
+                         "price":  20000,
+                         "category":  "Mujer",
+                         "ref":  "5016",
+                         "name":  "Nike Airmax SNDR",
+                         "brand":  "Nike",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0077.jpg",
+                         "id":  6,
                          "sizes":  "Euro 36",
                          "price":  50000,
                          "category":  "Mujer",
@@ -45,8 +67,30 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0076.jpg",
-                         "id":  5,
+                         "image":  "IMG-20260115-WA0078.jpg",
+                         "id":  7,
+                         "sizes":  "Euro 39",
+                         "price":  60000,
+                         "category":  "Mujer",
+                         "ref":  "5026",
+                         "name":  "Nike Legacy",
+                         "brand":  "Nike",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0079.jpg",
+                         "id":  8,
+                         "sizes":  "Euro 40",
+                         "price":  60000,
+                         "category":  "Hombre",
+                         "ref":  "4326",
+                         "name":  "New Balance 550",
+                         "brand":  "New Balance",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0080.jpg",
+                         "id":  9,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -56,8 +100,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0077.jpg",
-                         "id":  6,
+                         "image":  "IMG-20260115-WA0081.jpg",
+                         "id":  10,
                          "sizes":  "Euro 40",
                          "price":  60000,
                          "category":  "Hombre",
@@ -67,107 +111,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0078.jpg",
-                         "id":  7,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "5158",
-                         "name":  "On Cloud 5",
-                         "brand":  "On",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0079.jpg",
-                         "id":  8,
-                         "sizes":  "Euro 41 al 44",
-                         "price":  50000,
-                         "category":  "Hombre",
-                         "ref":  "5133",
-                         "name":  "Nike Air TN",
-                         "brand":  "Nike",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0080.jpg",
-                         "id":  9,
-                         "sizes":  "Euro 40 y 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "5230",
-                         "name":  "Skechers Propulsion",
-                         "brand":  "Skechers",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0081.jpg",
-                         "id":  10,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "4468",
-                         "name":  "On Cloud Monster",
-                         "brand":  "On",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
                          "image":  "IMG-20260115-WA0082.jpg",
                          "id":  11,
-                         "sizes":  "Euro 39",
-                         "price":  40000,
-                         "category":  "Mujer",
-                         "ref":  "3351",
-                         "name":  "Puma Cali Plataforma",
-                         "brand":  "Puma",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0083.jpg",
-                         "id":  12,
-                         "sizes":  "Euro 39",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "3645",
-                         "name":  "Nike Blazer Plataforma",
-                         "brand":  "Nike",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0084.jpg",
-                         "id":  13,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "4274",
-                         "name":  "Adidas Ultraboost 24",
-                         "brand":  "Adidas",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0085.jpg",
-                         "id":  14,
-                         "sizes":  "Euro 36 al 38",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "3822",
-                         "name":  "Nike Bless",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0086.jpg",
-                         "id":  15,
-                         "sizes":  "Euro 37",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "4271",
-                         "name":  "New Balance 550",
-                         "brand":  "New Balance",
-                         "note":  "NO CAMBIO, NO GARANTIA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0087.jpg",
-                         "id":  16,
                          "sizes":  "Euro 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -177,8 +122,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0088.jpg",
-                         "id":  17,
+                         "image":  "IMG-20260115-WA0083.jpg",
+                         "id":  12,
                          "sizes":  "Euro 40",
                          "price":  30000,
                          "category":  "Hombre",
@@ -188,8 +133,19 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0089.jpg",
-                         "id":  18,
+                         "image":  "IMG-20260115-WA0083.jpg",
+                         "id":  13,
+                         "sizes":  "Euro 36",
+                         "price":  30000,
+                         "category":  "Mujer",
+                         "ref":  "5241",
+                         "name":  "Adidas Grand Court",
+                         "brand":  "Adidas",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0084.jpg",
+                         "id":  14,
                          "sizes":  "Euro 40",
                          "price":  50000,
                          "category":  "Hombre",
@@ -199,18 +155,62 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0090.jpg",
-                         "id":  19,
+                         "image":  "IMG-20260115-WA0085.jpg",
+                         "id":  15,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
-                         "ref":  "2510",
-                         "name":  "Nike Air Max TN",
+                         "ref":  "5158",
+                         "name":  "On Cloud 5",
+                         "brand":  "On",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0086.jpg",
+                         "id":  16,
+                         "sizes":  "Euro 41 al 44",
+                         "price":  50000,
+                         "category":  "Hombre",
+                         "ref":  "5133",
+                         "name":  "Nike Air TN",
                          "brand":  "Nike",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0091.jpg",
+                         "image":  "IMG-20260115-WA0087.jpg",
+                         "id":  17,
+                         "sizes":  "Euro 40 y 41",
+                         "price":  60000,
+                         "category":  "Hombre",
+                         "ref":  "5230",
+                         "name":  "Skechers Propulsion",
+                         "brand":  "Skechers",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0088.jpg",
+                         "id":  18,
+                         "sizes":  "Euro 36 al 39",
+                         "price":  60000,
+                         "category":  "Mujer",
+                         "ref":  "4468",
+                         "name":  "On Cloud Monster",
+                         "brand":  "On",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0089.jpg",
+                         "id":  19,
+                         "sizes":  "Euro 36, 38, 39",
+                         "price":  60000,
+                         "category":  "Mujer",
+                         "ref":  "2510",
+                         "name":  "Nike Air TN",
+                         "brand":  "Nike",
+                         "note":  "NO CAMBIO, NO GARANTIA"
+                     },
+                     {
+                         "image":  "IMG-20260115-WA0090.jpg",
                          "id":  20,
                          "sizes":  "Euro 40",
                          "price":  60000,
@@ -221,7 +221,7 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0092.jpg",
+                         "image":  "IMG-20260115-WA0091.jpg",
                          "id":  21,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
@@ -232,7 +232,7 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0093.jpg",
+                         "image":  "IMG-20260115-WA0092.jpg",
                          "id":  22,
                          "sizes":  "Euro 39",
                          "price":  40000,
@@ -243,7 +243,7 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0094.jpg",
+                         "image":  "IMG-20260115-WA0093.jpg",
                          "id":  23,
                          "sizes":  "Euro 40",
                          "price":  60000,
@@ -254,8 +254,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0095.jpg",
-                         "id":  24,
+                         "image":  "IMG-20260115-WA0094.jpg",
+                         "id":  23,
                          "sizes":  "Euro 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -265,8 +265,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0096.jpg",
-                         "id":  25,
+                         "image":  "IMG-20260115-WA0095.jpg",
+                         "id":  24,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -276,8 +276,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0097.jpg",
-                         "id":  26,
+                         "image":  "IMG-20260115-WA0096.jpg",
+                         "id":  25,
                          "sizes":  "Euro 36 al 39",
                          "price":  40000,
                          "category":  "Mujer",
@@ -287,8 +287,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0098.jpg",
-                         "id":  27,
+                         "image":  "IMG-20260115-WA0097.jpg",
+                         "id":  26,
                          "sizes":  "Euro 36",
                          "price":  50000,
                          "category":  "Mujer",
@@ -298,8 +298,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0099.jpg",
-                         "id":  28,
+                         "image":  "IMG-20260115-WA0098.jpg",
+                         "id":  27,
                          "sizes":  "Euro 41",
                          "price":  50000,
                          "category":  "Hombre",
@@ -309,8 +309,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0100.jpg",
-                         "id":  29,
+                         "image":  "IMG-20260115-WA0099.jpg",
+                         "id":  28,
                          "sizes":  "Euro 40, 41, 42, 44",
                          "price":  60000,
                          "category":  "Hombre",
@@ -320,8 +320,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0101.jpg",
-                         "id":  30,
+                         "image":  "IMG-20260115-WA0100.jpg",
+                         "id":  29,
                          "sizes":  "Euro 36 al 38",
                          "price":  70000,
                          "category":  "Mujer",
@@ -331,8 +331,8 @@
                          "note":  ""
                      },
                      {
-                         "image":  "IMG-20260115-WA0102.jpg",
-                         "id":  31,
+                         "image":  "IMG-20260115-WA0101.jpg",
+                         "id":  30,
                          "sizes":  "Euro 37",
                          "price":  60000,
                          "category":  "Mujer",
@@ -342,8 +342,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0103.jpg",
-                         "id":  32,
+                         "image":  "IMG-20260115-WA0099.jpg",
+                         "id":  31,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -353,8 +353,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0104.jpg",
-                         "id":  33,
+                         "image":  "IMG-20260115-WA0102.jpg",
+                         "id":  32,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -364,8 +364,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0105.jpg",
-                         "id":  34,
+                         "image":  "IMG-20260115-WA0103.jpg",
+                         "id":  33,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -375,8 +375,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0106.jpg",
-                         "id":  35,
+                         "image":  "IMG-20260115-WA0104.jpg",
+                         "id":  34,
                          "sizes":  "Euro 36 y 37",
                          "price":  70000,
                          "category":  "Mujer",
@@ -386,8 +386,8 @@
                          "note":  ""
                      },
                      {
-                         "image":  "IMG-20260115-WA0107.jpg",
-                         "id":  36,
+                         "image":  "IMG-20260115-WA0105.jpg",
+                         "id":  35,
                          "sizes":  "Euro 36 y 39",
                          "price":  70000,
                          "category":  "Mujer",
@@ -397,8 +397,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0108.jpg",
-                         "id":  37,
+                         "image":  "IMG-20260115-WA0106.jpg",
+                         "id":  36,
                          "sizes":  "Euro 40 y 41",
                          "price":  60000,
                          "category":  "Hombre",
@@ -408,8 +408,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0109.jpg",
-                         "id":  38,
+                         "image":  "IMG-20260115-WA0107.jpg",
+                         "id":  37,
                          "sizes":  "Euro 37",
                          "price":  60000,
                          "category":  "Mujer",
@@ -419,8 +419,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0110.jpg",
-                         "id":  39,
+                         "image":  "IMG-20260115-WA0108.jpg",
+                         "id":  38,
                          "sizes":  "Euro 36 y 37",
                          "price":  60000,
                          "category":  "Mujer",
@@ -430,8 +430,8 @@
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
                      {
-                         "image":  "IMG-20260115-WA0111.jpg",
-                         "id":  40,
+                         "image":  "IMG-20260115-WA0109.jpg",
+                         "id":  39,
                          "sizes":  "Euro 39",
                          "price":  70000,
                          "category":  "Mujer",
@@ -441,817 +441,14 @@
                          "note":  ""
                      },
                      {
-                         "image":  "IMG-20260115-WA0112.jpg",
-                         "id":  41,
+                         "image":  "IMG-20260115-WA0110.jpg",
+                         "id":  40,
                          "sizes":  "Euro 41 al 43",
                          "price":  70000,
                          "category":  "Hombre",
                          "ref":  "5162",
                          "name":  "On Cloud 5",
                          "brand":  "On",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0113.jpg",
-                         "id":  42,
-                         "sizes":  "Euro 40 y 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "5171",
-                         "name":  "Nike Shox",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0114.jpg",
-                         "id":  43,
-                         "sizes":  "Euro 38",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "5426",
-                         "name":  "Nike Alpha Zoom",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0115.jpg",
-                         "id":  44,
-                         "sizes":  "Euro 36, 37 y 39",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "5170",
-                         "name":  "Nike Shox",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0116.jpg",
-                         "id":  45,
-                         "sizes":  "Euro 36 al 41",
-                         "price":  75000,
-                         "category":  "Unisex",
-                         "ref":  "2703-2704",
-                         "name":  "Nike DN",
-                         "brand":  "Nike",
-                         "note":  "POR CAJA .000"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0117.jpg",
-                         "id":  46,
-                         "sizes":  "Euro 40, 41, 42, 44",
-                         "price":  75000,
-                         "category":  "Hombre",
-                         "ref":  "2688",
-                         "name":  "Nike Nueva",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0118.jpg",
-                         "id":  47,
-                         "sizes":  "Euro 36, 39",
-                         "price":  75000,
-                         "category":  "Unisex",
-                         "ref":  "2701",
-                         "name":  "Adidas Machete",
-                         "brand":  "Adidas",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0119.jpg",
-                         "id":  48,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  75000,
-                         "category":  "Mujer",
-                         "ref":  "2702",
-                         "name":  "Nike DN",
-                         "brand":  "Nike",
-                         "note":  "POR CAJA .000"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0120.jpg",
-                         "id":  49,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  75000,
-                         "category":  "Mujer",
-                         "ref":  "2705",
-                         "name":  "Nike DN",
-                         "brand":  "Nike",
-                         "note":  "POR CAJA .000"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0121.jpg",
-                         "id":  50,
-                         "sizes":  "Euro 40 al 43",
-                         "price":  75000,
-                         "category":  "Hombre",
-                         "ref":  "2709",
-                         "name":  "Nike DN",
-                         "brand":  "Nike",
-                         "note":  "POR CAJA .000"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0122.jpg",
-                         "id":  51,
-                         "sizes":  "Euro 40, 41, 42, 44",
-                         "price":  75000,
-                         "category":  "Hombre",
-                         "ref":  "2664",
-                         "name":  "Nike Vomero",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0123.jpg",
-                         "id":  52,
-                         "sizes":  "Euro 40, 41, 42, 44",
-                         "price":  75000,
-                         "category":  "Hombre",
-                         "ref":  "2683",
-                         "name":  "New Balance 2000",
-                         "brand":  "New Balance",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0124.jpg",
-                         "id":  53,
-                         "sizes":  "Euro 40 al 44",
-                         "price":  75000,
-                         "category":  "Hombre",
-                         "ref":  "2685",
-                         "name":  "Nike Nueva",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0125.jpg",
-                         "id":  54,
-                         "sizes":  "Euro 40, 41, 42",
-                         "price":  75000,
-                         "category":  "Hombre",
-                         "ref":  "2686",
-                         "name":  "Nike Nueva",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0126.jpg",
-                         "id":  55,
-                         "sizes":  "Euro 40, 41, 42, 44",
-                         "price":  75000,
-                         "category":  "Hombre",
-                         "ref":  "2687",
-                         "name":  "Nike Nueva",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0127.jpg",
-                         "id":  56,
-                         "sizes":  "Euro 36",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "2655",
-                         "name":  "Nike Pegasus",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0128.jpg",
-                         "id":  57,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "2659",
-                         "name":  "Nike Vomero",
-                         "brand":  "Nike",
-                         "note":  "POR CAJA .000"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0129.jpg",
-                         "id":  58,
-                         "sizes":  "Euro 36",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "2660",
-                         "name":  "Nike Vomero",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0130.jpg",
-                         "id":  59,
-                         "sizes":  "Euro 36, 37",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "2661",
-                         "name":  "Nike Vomero",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0131.jpg",
-                         "id":  60,
-                         "sizes":  "Euro 36 al 44",
-                         "price":  70000,
-                         "category":  "Unisex",
-                         "ref":  "2662-2663",
-                         "name":  "Nike Vomero",
-                         "brand":  "Nike",
-                         "note":  "POR CAJA .000"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0132.jpg",
-                         "id":  61,
-                         "sizes":  "Euro 36",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2517",
-                         "name":  "New Balance 999",
-                         "brand":  "New Balance",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0133.jpg",
-                         "id":  62,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2527",
-                         "name":  "Nike Zoom Pegasus",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0134.jpg",
-                         "id":  63,
-                         "sizes":  "Euro 36",
-                         "price":  75000,
-                         "category":  "Mujer",
-                         "ref":  "2376",
-                         "name":  "Nike V2K Run",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0135.jpg",
-                         "id":  64,
-                         "sizes":  "Euro 36, 38",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "2645",
-                         "name":  "Nike Cortez",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0136.jpg",
-                         "id":  65,
-                         "sizes":  "Euro 36",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "2650",
-                         "name":  "Adidas Gazelle",
-                         "brand":  "Adidas",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0137.jpg",
-                         "id":  66,
-                         "sizes":  "Euro 36",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "996",
-                         "name":  "Balenciaga Triple S",
-                         "brand":  "Balenciaga",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0138.jpg",
-                         "id":  67,
-                         "sizes":  "Euro 40, 41, 42",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2529",
-                         "name":  "Armani Exchange",
-                         "brand":  "Armani",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0139.jpg",
-                         "id":  68,
-                         "sizes":  "Euro 40",
-                         "price":  60000000,
-                         "category":  "Hombre",
-                         "ref":  "2531",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0140.jpg",
-                         "id":  69,
-                         "sizes":  "Euro 36",
-                         "price":  75000,
-                         "category":  "Mujer",
-                         "ref":  "1514",
-                         "name":  "Amiri",
-                         "brand":  "Amiri",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0141.jpg",
-                         "id":  70,
-                         "sizes":  "Euro 36 al 41, 43",
-                         "price":  75000,
-                         "category":  "Mujer",
-                         "ref":  "1521-1522",
-                         "name":  "Amiri",
-                         "brand":  "Amiri",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0142.jpg",
-                         "id":  71,
-                         "sizes":  "Euro 39",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2029",
-                         "name":  "Nike Blazer Mid",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0143.jpg",
-                         "id":  72,
-                         "sizes":  "Euro 36, 37, 39",
-                         "price":  50000,
-                         "category":  "Mujer",
-                         "ref":  "2058",
-                         "name":  "Nike Correlate",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0144.jpg",
-                         "id":  73,
-                         "sizes":  "Euro 36, 37",
-                         "price":  70000,
-                         "category":  "Mujer",
-                         "ref":  "1102",
-                         "name":  "Nike AF1 1.1",
-                         "brand":  "Nike",
-                         "note":  "VIENE CON TULA"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0145.jpg",
-                         "id":  74,
-                         "sizes":  "Euro 44",
-                         "price":  50000,
-                         "category":  "Hombre",
-                         "ref":  "2201",
-                         "name":  "Adidas Samba",
-                         "brand":  "Adidas",
-                         "note":  "NO CAMBIO-NO GARANTIA PROMO"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0146.jpg",
-                         "id":  75,
-                         "sizes":  "Euro 42, 43",
-                         "price":  50000,
-                         "category":  "Hombre",
-                         "ref":  "2235",
-                         "name":  "Puma Mirage",
-                         "brand":  "Puma",
-                         "note":  "NO CAMBIO-NO GARANTIA PROMO"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0147.jpg",
-                         "id":  76,
-                         "sizes":  "Euro 40, 41, 44",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2254",
-                         "name":  "Nike Air Max",
-                         "brand":  "Nike",
-                         "note":  "NO CAMBIO-NO GARANTIA PROMO"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0148.jpg",
-                         "id":  77,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2270",
-                         "name":  "On Cloud",
-                         "brand":  "On",
-                         "note":  "NO CAMBIO-NO GARANTIA PROMO"
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0149.jpg",
-                         "id":  78,
-                         "sizes":  "Euro 36, 37, 39",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2287",
-                         "name":  "Converse",
-                         "brand":  "Converse",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0150.jpg",
-                         "id":  79,
-                         "sizes":  "Euro 36, 37",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2310",
-                         "name":  "Nike Bailleli",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0151.jpg",
-                         "id":  80,
-                         "sizes":  "Euro 33",
-                         "price":  55000,
-                         "category":  "Niño",
-                         "ref":  "2318",
-                         "name":  "Nike Zoom Niño",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0152.jpg",
-                         "id":  81,
-                         "sizes":  "Euro 32",
-                         "price":  55000,
-                         "category":  "Niño",
-                         "ref":  "2323",
-                         "name":  "Nike Zoom Niño",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0153.jpg",
-                         "id":  82,
-                         "sizes":  "Euro 28, 29",
-                         "price":  55000,
-                         "category":  "Niño",
-                         "ref":  "2335",
-                         "name":  "Nike DN Niño",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0154.jpg",
-                         "id":  83,
-                         "sizes":  "Euro 29, 33",
-                         "price":  55000,
-                         "category":  "Niño",
-                         "ref":  "2336",
-                         "name":  "Nike DN Niño",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0155.jpg",
-                         "id":  84,
-                         "sizes":  "Euro 36",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2352",
-                         "name":  "Nike Zoom",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0156.jpg",
-                         "id":  85,
-                         "sizes":  "Euro 36",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2354",
-                         "name":  "Nike Zoom",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0157.jpg",
-                         "id":  86,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2367",
-                         "name":  "Asics Running",
-                         "brand":  "Asics",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0158.jpg",
-                         "id":  87,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2368",
-                         "name":  "Nike Air Max",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0159.jpg",
-                         "id":  88,
-                         "sizes":  "Euro 36, 40",
-                         "price":  75000,
-                         "category":  "Unisex",
-                         "ref":  "2382-2383",
-                         "name":  "New Balance Fresh X Kaiha",
-                         "brand":  "New Balance",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0160.jpg",
-                         "id":  89,
-                         "sizes":  "Euro 40 al 43",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2392",
-                         "name":  "Puma Suede One Piece",
-                         "brand":  "Puma",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0161.jpg",
-                         "id":  90,
-                         "sizes":  "Euro 40",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2394",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0162.jpg",
-                         "id":  91,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2399",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0163.jpg",
-                         "id":  92,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2400",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0164.jpg",
-                         "id":  93,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2401",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0165.jpg",
-                         "id":  94,
-                         "sizes":  "Euro 40",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2433",
-                         "name":  "Valentino",
-                         "brand":  "Valentino",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0166.jpg",
-                         "id":  95,
-                         "sizes":  "Euro 40, 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2439",
-                         "name":  "Valentino",
-                         "brand":  "Valentino",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0167.jpg",
-                         "id":  96,
-                         "sizes":  "Euro 41",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2445",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0168.jpg",
-                         "id":  97,
-                         "sizes":  "Euro 40",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2446",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0169.jpg",
-                         "id":  98,
-                         "sizes":  "Euro 44",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2448",
-                         "name":  "Hugo Boss",
-                         "brand":  "Hugo Boss",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0170.jpg",
-                         "id":  99,
-                         "sizes":  "Euro 36 al 41",
-                         "price":  55000,
-                         "category":  "Unisex",
-                         "ref":  "2455-2456",
-                         "name":  "Nike Zoom Alphafly",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0171.jpg",
-                         "id":  100,
-                         "sizes":  "Euro 36 al 41",
-                         "price":  55000,
-                         "category":  "Unisex",
-                         "ref":  "2457-2458",
-                         "name":  "Nike Zoom Alphafly",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0172.jpg",
-                         "id":  101,
-                         "sizes":  "Euro 36 al 44",
-                         "price":  55000,
-                         "category":  "Unisex",
-                         "ref":  "2459-2460",
-                         "name":  "Nike Zoom Alphafly",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0173.jpg",
-                         "id":  102,
-                         "sizes":  "Euro 40",
-                         "price":  60000,
-                         "category":  "Hombre",
-                         "ref":  "2467",
-                         "name":  "Armani Exchange",
-                         "brand":  "Armani",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0174.jpg",
-                         "id":  103,
-                         "sizes":  "Euro 29, 31, 32, 33",
-                         "price":  55000,
-                         "category":  "Niño",
-                         "ref":  "2476",
-                         "name":  "Puma Suede XL Niño",
-                         "brand":  "Puma",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0175.jpg",
-                         "id":  104,
-                         "sizes":  "Euro 29, 31",
-                         "price":  55000,
-                         "category":  "Niño",
-                         "ref":  "2478",
-                         "name":  "Puma Suede XL Niño",
-                         "brand":  "Puma",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0176.jpg",
-                         "id":  105,
-                         "sizes":  "Euro 36",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2496",
-                         "name":  "Nike Zoom",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0177.jpg",
-                         "id":  106,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  75000,
-                         "category":  "Mujer",
-                         "ref":  "2507",
-                         "name":  "Amiri",
-                         "brand":  "Amiri",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0178.jpg",
-                         "id":  107,
-                         "sizes":  "Euro 36, 37, 38",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2516",
-                         "name":  "New Balance 999",
-                         "brand":  "New Balance",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0179.jpg",
-                         "id":  108,
-                         "sizes":  "Euro 37",
-                         "price":  60000,
-                         "category":  "Mujer",
-                         "ref":  "2302",
-                         "name":  "Nike Bailleli",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0180.jpg",
-                         "id":  109,
-                         "sizes":  "Euro 40",
-                         "price":  70000,
-                         "category":  "Hombre",
-                         "ref":  "2432",
-                         "name":  "Nike TN Light",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0181.jpg",
-                         "id":  110,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  90000,
-                         "category":  "Mujer",
-                         "ref":  "2735",
-                         "name":  "Adidas Adizero",
-                         "brand":  "Adidas",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0182.jpg",
-                         "id":  111,
-                         "sizes":  "Euro 36, 37",
-                         "price":  95000,
-                         "category":  "Mujer",
-                         "ref":  "2736",
-                         "name":  "Nike Pegasus Trail",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0183.jpg",
-                         "id":  112,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  95000,
-                         "category":  "Mujer",
-                         "ref":  "2737",
-                         "name":  "Nike Pegasus Trail",
-                         "brand":  "Nike",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0184.jpg",
-                         "id":  113,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  100000,
-                         "category":  "Mujer",
-                         "ref":  "2523",
-                         "name":  "Adidas Adistar",
-                         "brand":  "Adidas",
-                         "note":  ""
-                     },
-                     {
-                         "image":  "IMG-20260115-WA0185.jpg",
-                         "id":  114,
-                         "sizes":  "Euro 36 al 39",
-                         "price":  80000,
-                         "category":  "Mujer",
-                         "ref":  "2744",
-                         "name":  "Adidas Duramo Speed",
-                         "brand":  "Adidas",
                          "note":  ""
                      }
                  ]
