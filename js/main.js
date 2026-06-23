@@ -299,12 +299,6 @@ function updateCartUI() {
     }
 }
 
-function removeFromCart(productId) {
-    cart = cart.filter(item => item.id !== productId);
-    saveCart();
-    updateCartUI();
-}
-
 function clearCart() {
     cart = [];
     saveCart();
