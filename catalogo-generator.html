@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo Victoria 79 - Generador PDF</title>
+    <style>
+        @page { margin: 1.5cm; size: A4; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; background: #fff; color: #111; padding: 20px; }
+        .page { page-break-after: always; }
+        .page:last-child { page-break-after: auto; }
+        
+        /* Header */
+        .catalog-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #111; }
+        .catalog-header .logo { font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; color: #111; }
+        .catalog-header .logo span { color: #FFD700; }
+        .catalog-header .tagline { color: #666; font-size: 1rem; margin-top: 5px; }
+        .catalog-header .contact { margin-top: 15px; font-size: 0.9rem; color: #444; }
+        
+        /* Product Grid */
+        .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .product-card { border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; background: #fff; transition: none; }
+        .product-card:hover { box-shadow: none; transform: none; }
+        .product-image { width: 100%; height: 180px; object-fit: cover; background: #f5f5f5; }
+        .product-info { padding: 12px; }
+        .product-brand { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+        .product-name { font-size: 0.95rem; font-weight: 600; margin: 4px 0; line-height: 1.3; }
+        .product-price { font-size: 1.1rem; font-weight: 800; color: #111; }
+        .product-sizes { font-size: 0.75rem; color: #888; margin-top: 4px; }
+        .product-ref { font-size: 0.7rem; color: #aaa; margin-top: 2px; }
+        .product-note { font-size: 0.65rem; color: #c00; background: #fff5f5; padding: 2px 6px; border-radius: 3px; display: inline-block; margin-top: 6px; }
+        
+        /* Print button */
+        .print-btn { position: fixed; top: 20px; right: 20px; padding: 12px 24px; background: #111; color: #fff; border: none; border-radius: 6px; font-size: 1rem; font-weight: 600; cursor: pointer; z-index: 1000; }
+        .print-btn:hover { background: #333; }
+        @media print { .print-btn { display: none; } body { padding: 0; } .page { page-break-after: always; } }
+    </style>
+</head>
+<body>
+    <button class="print-btn" onclick="window.print()"><i class="fas fa-print"></i> Guardar como PDF</button>
+    <div id="catalog"></div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></script>
+    <script>
+        // Cargar productos y generar catálogo
+        fetch('products.json')
+            .then(r => r.json())
+            .then(data => {
+                const products = data.products;
+                const perPage = 9; // 3x3 por página
+                const pages = [];
+                
+                for (let i = 0; i < products.length; i += perPage) {
+                    pages.push(products.slice(i, i + perPage));
+                }
+                
+                const catalog = document.getElementById('catalog');
+                
+                pages.forEach((pageProducts, pageIndex) => {
+                    const page = document.createElement('div');
+                    page.className = 'page';
+                    
+                    // Header solo en primera página
+                    if (pageIndex === 0) {
+                        page.innerHTML = `
+                            <div class="catalog-header">
+                                <div class="logo">VICTORIA <span>79</span></div>
+                                <div class="tagline">Catálogo de Calzado Urbano Premium</div>
+                                <div class="contact">
+                                    🇨🇴 Medellín, Colombia · CC Mio Piso 3 Local 301<br>
+                                    📱 WhatsApp: +57 318 417 0976 · @victoria79_medellin
+                                </div>
+                            </div>
+                        `;
+                    }
+                    
+                    const grid = document.createElement('div');
+                    grid.className = 'products-grid';
+                    
+                    pageProducts.forEach(p => {
+                        const card = document.createElement('div');
+                        card.className = 'product-card';
+                        card.innerHTML = `
+                            <img src="images/${p.image}" alt="${p.name}" class="product-image" loading="lazy" onerror="this.style.display='none'">
+                            <div class="product-info">
+                                <div class="product-brand">${p.brand}</div>
+                                <div class="product-name">${p.name}</div>
+                                <div class="product-price">${new Intl.NumberFormat('es-CO', {style:'currency',currency:'COP',minimumFractionDigits:0}).format(p.price)}</div>
+                                <div class="product-sizes">Tallas: ${p.sizes}</div>
+                                <div class="product-ref">Ref: ${p.ref || 'N/A'}</div>
+                                ${p.note ? `<div class="product-note">${p.note}</div>` : ''}
+                            </div>
+                        `;
+                        grid.appendChild(card);
+                    });
+                    
+                    page.appendChild(grid);
+                    catalog.appendChild(page);
+                });
+            })
+            .catch(err => console.error('Error:', err));
+    </script>
+</body>
+</html>
