@@ -377,3 +377,74 @@ document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
 });
+
+// ============= HERO CAROUSEL =============
+function initCarousel() {
+    const carousel = document.getElementById('heroBgCarousel');
+    const dotsContainer = document.getElementById('carouselDots');
+    if (!carousel || !dotsContainer) return;
+    
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    let currentSlide = 0;
+    let carouselInterval;
+    
+    // Create dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('aria-label', 'Slide ' + (i + 1));
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    });
+    
+    const dots = dotsContainer.querySelectorAll('.carousel-dot');
+    
+    function goToSlide(index) {
+        slides[currentSlide].classList.remove('active');
+        dots[currentSlide].classList.remove('active');
+        
+        currentSlide = index;
+        
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+    
+    function nextSlide() {
+        goToSlide((currentSlide + 1) % slides.length);
+    }
+    
+    function startCarousel() {
+        carouselInterval = setInterval(nextSlide, 7000);
+    }
+    
+    function stopCarousel() {
+        clearInterval(carouselInterval);
+    }
+    
+    // Pause on hover
+    const carousel = document.getElementById('heroBgCarousel');
+    if (carousel) {
+        carousel.addEventListener('mouseenter', stopCarousel);
+        carousel.addEventListener('mouseleave', startCarousel);
+    }
+    
+    // Start
+    startCarousel();
+}
+
+// Add to DOMContentLoaded
+const originalInit = document.getElementById('heroBgCarousel') ? true : false;
+if (originalInit) {
+    const oldOnLoad = window.onload;
+    window.onload = function() {
+        if (oldOnLoad) oldOnLoad();
+        initCarousel();
+    };
+}
+
+// Or add to existing DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Small delay to ensure DOM is ready
+    setTimeout(initCarousel, 100);
+});
