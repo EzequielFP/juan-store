@@ -334,3 +334,55 @@ header .header-right { order: 4; }
 @media (max-width: 640px) {
   .carousel-slide { background-attachment: fixed; }
 }
+
+/* =================================== FLAG IMAGES =================================== */
+.flag-img {
+  width: 32px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+.flag-img:hover {
+  transform: scale(1.15);
+}
+.flag-sm {
+  width: 20px;
+  height: 14px;
+  vertical-align: middle;
+  margin-right: 4px;
+  border-radius: 2px;
+}
+.flag-xs {
+  width: 16px;
+  height: 11px;
+  vertical-align: middle;
+  margin: 0 3px;
+  border-radius: 2px;
+}
+.whatsapp-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.qr-link {
+  display: block;
+}
+.qr-code {
+  border-radius: 8px;
+  border: 2px solid var(--gray-200);
+  transition: border-color 0.2s, transform 0.2s;
+}
+.qr-code:hover {
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+/* Responsive flags */
+@media (max-width: 640px) {
+  .flag-img { width: 24px; height: 16px; }
+  .flag-sm { width: 16px; height: 11px; }
+  .flag-xs { width: 14px; height: 10px; }
+}

@@ -59,7 +59,7 @@ function displayCatalog(products) {
                 '<div class=\"product-brand\">' + product.brand + '</div>' +
                 '<div class=\"product-name\">' + product.name + '</div>' +
                 '<div class=\"product-price\">' + formatPrice(product.price) + '</div>' +
-                '<div class=\"product-sizes\">Tallas: ' + product.sizes + '</div>' +
+                '<div class=\"product-sizes\">Tallas:allas: ' + product.sizes + '</div>' +
                 noteHtml +
                 '<button class=\"add-to-cart\" onclick=\"event.stopPropagation(); addToCart(' + product.id + ')\" style=\"margin-top:0.8rem;width:100%;padding:0.6rem;background:var(--black);color:white;border:none;border-radius:6px;font-weight:600;cursor:pointer;\"><i class=\"fas fa-cart-plus\"></i> Agregar al carrito</button>' +
             '</div>' +
@@ -96,7 +96,7 @@ function populateFilters(products) {
         [...sizes].sort((a,b) => parseInt(a) - parseInt(b)).forEach(s => {
             const opt = document.createElement('option');
             opt.value = s;
-            opt.textContent = 'Euro ' + s;
+            opt.textContent = 'uro ' + s;
             sizeSelect.appendChild(opt);
         });
     }
@@ -183,7 +183,7 @@ function openLightbox(productId) {
     const info = document.getElementById('lightboxInfo');
     img.src = 'images/' + product.image;
     img.alt = product.name;
-    info.innerHTML = '<h4>' + product.name + '</h4><p>' + product.brand + ' | ' + formatPrice(product.price) + ' | Tallas: ' + product.sizes + (product.note ? ' | ' + product.note : '') + '</p>';
+    info.innerHTML = '<h4>' + product.name + '</h4><p>' + product.brand + ' | ' + formatPrice(product.price) + ' | ?llas: ' + product.sizes + (product.note ? ' | ' + product.note : '') + '</p>';
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
@@ -199,6 +199,8 @@ function navigateLightbox(dir) {
 }
 
 // ============= CARRITO =============
+const WHATSAPP_NUMBER = '573247432471';
+
 function initCart() {
     const cartBtn = document.getElementById('cartBtn');
     const cartClose = document.getElementById('cartClose');
@@ -317,7 +319,7 @@ function checkoutWhatsApp() {
         const subtotal = item.price * item.qty;
         total += subtotal;
         message += (i+1) + '. ' + item.name + ' (' + item.brand + ')\n';
-        message += '   Ref: ' + (item.ref || 'N/A') + ' | Tallas: ' + item.sizes + '\n';
+        message += '   Ref: ' + (item.ref || 'N/A') + ' | ?llas: ' + item.sizes + '\n';
         message += '   Cantidad: ' + item.qty + ' x ' + formatPrice(item.price) + ' = ' + formatPrice(subtotal) + '\n\n';
     });
     
@@ -328,7 +330,7 @@ function checkoutWhatsApp() {
     message += 'Ciudad:\n';
     message += 'Telefono:\n';
 
-    window.open('https://wa.me/573184170976?text=' + encodeURIComponent(message), '_blank');
+    window.open('https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(message), '_blank');
     showToast('Abriendo WhatsApp...', 'success');
 }
 
