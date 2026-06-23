@@ -47,6 +47,12 @@
         <div class="carousel-overlay"></div><div class="carousel-dots" id="carouselDots"></div>
     </div>
 
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="header-flags">
@@ -71,13 +77,12 @@
     </header>
 
     <!-- Hero con productos -->
-    <section class="hero-products" id="productos">
+    <section class="hero-products visible" id="productos">
         <div class="hero-text">
             <h1>VICTORIA 79</h1>
             <p>Calzado urbano de las mejores marcas. Directo de Medellín para todo Colombia.</p>
             <div class="hero-tags">
                 <span><img src="images/Colombia.webp" alt="Colombia" class="flag-sm" title="Colombia"> <img src="images/Antioquia.svg" alt="Antioquia" class="flag-sm" title="Antioquia"> Colombia & Antioquia</span>
-                <span>100% Original</span>
             </div>
         </div>
         <div class="products-showcase" id="productsShowcase">
