@@ -253,7 +253,7 @@ function updateQty(productId, delta) {
     const item = cart.find(i => i.id === productId);
     if (!item) return;
     item.qty += delta;
-    if (item.qty <= 0) removeFromCart(productId(productId);
+    if (item.qty <= 0) removeFromCart(productId);
     else { saveCart(); updateCartUI(); }
 }
 
