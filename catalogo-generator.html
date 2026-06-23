@@ -19,8 +19,7 @@
         
         /* Product Grid */
         .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .product-card { border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; background: #fff; transition: none; }
-        .product-card:hover { box-shadow: none; transform: none; }
+        .product-card { border: 1px solid #e5e5e5; border-radius: 8px; overflow: hidden; background: #fff; }
         .product-image { width: 100%; height: 180px; object-fit: cover; background: #f5f5f5; }
         .product-info { padding: 12px; }
         .product-brand { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #888; }
@@ -42,8 +41,8 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></script>
     <script>
-        // Cargar productos y generar catálogo
-        fetch('products.json')
+        // Cargar productos del catálogo corregido
+        fetch('products-catalog.json')
             .then(r => r.json())
             .then(data => {
                 const products = data.products;
@@ -67,8 +66,8 @@
                                 <div class="logo">VICTORIA <span>79</span></div>
                                 <div class="tagline">Catálogo de Calzado Urbano Premium</div>
                                 <div class="contact">
-                                    🇨🇴 Medellín, Colombia · CC Mio Piso 3 Local 301<br>
-                                    📱 WhatsApp: +57 318 417 0976 · @victoria79_medellin
+                                    🇨🇴 Medellín, Colombia · Cll 79 54b18, Barrio El Bosque<br>
+                                    📱 WhatsApp: +57 324 743 2471 · @victoria79_medellin
                                 </div>
                             </div>
                         `;
