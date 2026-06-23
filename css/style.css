@@ -167,6 +167,48 @@ nav a:hover::after { width: 100%; }
   letter-spacing: -3px;
   color: var(--white);
   text-shadow: 0 2px 40px rgba(0,0,0,0.3);
+  perspective: 800px;
+}
+.hero-text h1 .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: perspective(800px) rotateY(90deg) translateZ(-80px);
+  animation: letterReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  position: relative;
+  transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+.hero-text h1 .letter.space { display: inline; opacity: 1; transform: none; animation: none; }
+@keyframes letterReveal {
+  0% { opacity: 0; transform: perspective(800px) rotateY(90deg) translateZ(-80px) translateY(20px); filter: blur(10px); }
+  60% { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0); filter: blur(0); }
+}
+.hero-text h1:hover .letter {
+  animation-play-state: paused;
+}
+.hero-text h1 .letter.disintegrating {
+  animation: disintegrate 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  pointer-events: none;
+}
+@keyframes disintegrate {
+  0% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0) scale(1); filter: blur(0) brightness(1); }
+  30% { filter: blur(2px) brightness(2); }
+  100% { opacity: 0; transform: perspective(800px) rotateY(var(--rot, 90deg)) translateZ(var(--z, -100px)) translateY(var(--y, 50px)) translateX(var(--x, -30px)) scale(0.3); filter: blur(6px) brightness(0); }
+}
+@keyframes reassemble {
+  0% { opacity: 0; transform: perspective(800px) rotateY(var(--rot, 90deg)) translateZ(var(--z, -100px)) translateY(var(--y, 50px)) translateX(var(--x, -30px)) scale(0.3); filter: blur(6px) brightness(0); }
+  100% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0) scale(1); filter: blur(0) brightness(1); }
+}
+.hero-text h1 .letter.sparkle::after {
+  content: ''; position: absolute; top: 50%; left: 50%; width: 4px; height: 4px;
+  background: rgba(255,255,255,0.8); border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,255,255,0.6);
+  animation: sparkleFlash 0.4s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes sparkleFlash {
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
 }
 .hero-text p {
   font-size: 1.15rem; color: rgba(255,255,255,0.75);

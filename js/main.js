@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initLightbox();
     initCart();
     initCarousel();
+    initHeroTitle();
 });
 
 function loadProducts() {
@@ -588,6 +589,86 @@ function addToCartWithFly(btn, productId) {
 function initEffects() {
     initMagnetic();
     initParallax();
+}
+
+// =============================================
+//   HERO TITLE LETTER ANIMATION
+// =============================================
+function initHeroTitle() {
+    const title = document.getElementById('heroTitle');
+    if (!title) return;
+    const text = title.textContent;
+    const letters = [];
+    let disintegrating = false;
+    let reassembleTimer;
+
+    title.textContent = '';
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const span = document.createElement('span');
+        span.className = 'letter' + (char === ' ' ? ' space' : '');
+        span.textContent = char === ' ' ? '\u00A0' : char;
+        span.style.animationDelay = (0.03 * i) + 's';
+        span.dataset.index = i;
+        title.appendChild(span);
+        letters.push(span);
+    }
+
+    function disintegrate() {
+        if (disintegrating) return;
+        disintegrating = true;
+        clearTimeout(reassembleTimer);
+        letters.forEach((letter, i) => {
+            if (letter.classList.contains('space')) return;
+            const angle = (i / letters.length) * 360;
+            const rot = 30 + Math.random() * 120;
+            const z = -50 - Math.random() * 100;
+            const y = 20 + Math.random() * 60;
+            const x = (Math.random() - 0.5) * 80;
+            letter.style.setProperty('--rot', rot + 'deg');
+            letter.style.setProperty('--z', z + 'px');
+            letter.style.setProperty('--y', y + 'px');
+            letter.style.setProperty('--x', x + 'px');
+            letter.style.animation = 'none';
+            void letter.offsetWidth;
+            letter.style.animation = 'disintegrate 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+            letter.style.animationDelay = (i * 0.015) + 's';
+        });
+        addSparkles();
+    }
+
+    function addSparkles() {
+        const rect = title.getBoundingClientRect();
+        for (let i = 0; i < 12; i++) {
+            const sparkle = document.createElement('span');
+            sparkle.className = 'letter sparkle';
+            sparkle.style.cssText = 'position:fixed;width:4px;height:4px;background:rgba(255,255,255,0.8);border-radius:50%;pointer-events:none;z-index:10;animation:sparkleFlash ' + (0.3 + Math.random() * 0.4) + 's ease-out forwards;';
+            sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
+            sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
+            document.body.appendChild(sparkle);
+            setTimeout(function() { sparkle.remove(); }, 1000);
+        }
+    }
+
+    function reassemble() {
+        disintegrating = false;
+        letters.forEach((letter, i) => {
+            if (letter.classList.contains('space')) return;
+            letter.style.animation = 'none';
+            void letter.offsetWidth;
+            letter.style.animation = 'letterReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+            letter.style.animationDelay = (0.03 * i) + 's';
+        });
+    }
+
+    title.addEventListener('mouseenter', function() {
+        clearTimeout(reassembleTimer);
+        disintegrate();
+    });
+
+    title.addEventListener('mouseleave', function() {
+        reassembleTimer = setTimeout(reassemble, 200);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', function() {
