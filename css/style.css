@@ -173,42 +173,56 @@ nav a:hover::after { width: 100%; }
   display: inline-block;
   opacity: 0;
   transform: perspective(800px) rotateY(90deg) translateZ(-80px);
-  animation: letterReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  animation: letterReveal 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   position: relative;
   transition: transform 0.3s ease, text-shadow 0.3s ease;
+  text-shadow: 0 0 40px rgba(255,255,255,0.2);
 }
 .hero-text h1 .letter.space { display: inline; opacity: 1; transform: none; animation: none; }
 @keyframes letterReveal {
-  0% { opacity: 0; transform: perspective(800px) rotateY(90deg) translateZ(-80px) translateY(20px); filter: blur(10px); }
-  60% { opacity: 1; filter: blur(0); }
-  100% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0); filter: blur(0); }
+  0% { opacity: 0; transform: perspective(800px) rotateY(120deg) translateZ(-120px) translateY(40px); filter: blur(15px); }
+  50% { filter: blur(4px); }
+  80% { opacity: 1; transform: perspective(800px) rotateY(-5deg) translateZ(-10px) translateY(-4px); filter: blur(0); text-shadow: 0 0 60px rgba(255,255,255,0.4); }
+  100% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0); filter: blur(0); text-shadow: 0 0 40px rgba(255,255,255,0.2); }
 }
 .hero-text h1:hover .letter {
   animation-play-state: paused;
 }
 .hero-text h1 .letter.disintegrating {
-  animation: disintegrate 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: disintegrate 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   pointer-events: none;
 }
 @keyframes disintegrate {
-  0% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0) scale(1); filter: blur(0) brightness(1); }
-  30% { filter: blur(2px) brightness(2); }
-  100% { opacity: 0; transform: perspective(800px) rotateY(var(--rot, 90deg)) translateZ(var(--z, -100px)) translateY(var(--y, 50px)) translateX(var(--x, -30px)) scale(0.3); filter: blur(6px) brightness(0); }
+  0% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0) scale(1); filter: blur(0) brightness(1); text-shadow: 0 0 40px rgba(255,255,255,0.2); }
+  25% { filter: blur(3px) brightness(2.5); text-shadow: 0 0 80px rgba(255,255,255,0.8); }
+  50% { opacity: 0.5; transform: perspective(800px) rotateY(var(--rot, 90deg)) translateZ(calc(var(--z, -100px) * 0.5)) translateY(calc(var(--y, 50px) * 0.5)) translateX(calc(var(--x, -30px) * 0.5)) scale(0.6); filter: blur(8px) brightness(1.5); }
+  100% { opacity: 0; transform: perspective(800px) rotateY(var(--rot, 120deg)) translateZ(var(--z, -150px)) translateY(var(--y, 80px)) translateX(var(--x, -40px)) scale(0.2); filter: blur(12px) brightness(0); text-shadow: 0 0 0 transparent; }
 }
 @keyframes reassemble {
-  0% { opacity: 0; transform: perspective(800px) rotateY(var(--rot, 90deg)) translateZ(var(--z, -100px)) translateY(var(--y, 50px)) translateX(var(--x, -30px)) scale(0.3); filter: blur(6px) brightness(0); }
-  100% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0) scale(1); filter: blur(0) brightness(1); }
+  0% { opacity: 0; transform: perspective(800px) rotateY(var(--rot, 120deg)) translateZ(var(--z, -150px)) translateY(var(--y, 80px)) translateX(var(--x, -40px)) scale(0.2); filter: blur(12px) brightness(0); }
+  30% { filter: blur(6px) brightness(0.5); }
+  100% { opacity: 1; transform: perspective(800px) rotateY(0) translateZ(0) translateY(0) scale(1); filter: blur(0) brightness(1); text-shadow: 0 0 40px rgba(255,255,255,0.2); }
 }
 .hero-text h1 .letter.sparkle::after {
-  content: ''; position: absolute; top: 50%; left: 50%; width: 4px; height: 4px;
-  background: rgba(255,255,255,0.8); border-radius: 50%;
-  box-shadow: 0 0 6px rgba(255,255,255,0.6);
-  animation: sparkleFlash 0.4s ease-out forwards;
+  content: ''; position: absolute; top: 50%; left: 50%; width: 6px; height: 6px;
+  background: rgba(255,255,255,0.9); border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.4);
+  animation: sparkleFlash 0.6s ease-out forwards;
   pointer-events: none;
 }
 @keyframes sparkleFlash {
   0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  100% { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(4); opacity: 0; }
+}
+
+/* Idle floating animation after reveal */
+.hero-text h1 .letter.float {
+  animation: letterFloat 3s ease-in-out infinite;
+}
+@keyframes letterFloat {
+  0%, 100% { transform: perspective(800px) rotateY(0) translateZ(0) translateY(0); }
+  25% { transform: perspective(800px) rotateY(1deg) translateZ(2px) translateY(-3px); }
+  75% { transform: perspective(800px) rotateY(-1deg) translateZ(-1px) translateY(2px); }
 }
 .hero-text p {
   font-size: 1.15rem; color: rgba(255,255,255,0.75);

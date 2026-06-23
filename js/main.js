@@ -608,11 +608,22 @@ function initHeroTitle() {
         const span = document.createElement('span');
         span.className = 'letter' + (char === ' ' ? ' space' : '');
         span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.animationDelay = (0.03 * i) + 's';
+        span.style.animationDelay = (0.07 * i) + 's';
         span.dataset.index = i;
         title.appendChild(span);
         letters.push(span);
     }
+
+    const totalDuration = text.length * 0.07 * 1000 + 1200;
+
+    function addFloatAnimation() {
+        letters.forEach((letter, i) => {
+            if (letter.classList.contains('space')) return;
+            letter.classList.add('float');
+        });
+    }
+
+    setTimeout(addFloatAnimation, totalDuration);
 
     function disintegrate() {
         if (disintegrating) return;
@@ -620,33 +631,34 @@ function initHeroTitle() {
         clearTimeout(reassembleTimer);
         letters.forEach((letter, i) => {
             if (letter.classList.contains('space')) return;
+            letter.classList.remove('float');
             const angle = (i / letters.length) * 360;
-            const rot = 30 + Math.random() * 120;
-            const z = -50 - Math.random() * 100;
-            const y = 20 + Math.random() * 60;
-            const x = (Math.random() - 0.5) * 80;
+            const rot = 60 + Math.random() * 180;
+            const z = -80 - Math.random() * 150;
+            const y = 30 + Math.random() * 80;
+            const x = (Math.random() - 0.5) * 120;
             letter.style.setProperty('--rot', rot + 'deg');
             letter.style.setProperty('--z', z + 'px');
             letter.style.setProperty('--y', y + 'px');
             letter.style.setProperty('--x', x + 'px');
             letter.style.animation = 'none';
             void letter.offsetWidth;
-            letter.style.animation = 'disintegrate 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards';
-            letter.style.animationDelay = (i * 0.015) + 's';
+            letter.style.animation = 'disintegrate 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+            letter.style.animationDelay = (i * 0.025) + 's';
         });
         addSparkles();
     }
 
     function addSparkles() {
         const rect = title.getBoundingClientRect();
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < 20; i++) {
             const sparkle = document.createElement('span');
             sparkle.className = 'letter sparkle';
-            sparkle.style.cssText = 'position:fixed;width:4px;height:4px;background:rgba(255,255,255,0.8);border-radius:50%;pointer-events:none;z-index:10;animation:sparkleFlash ' + (0.3 + Math.random() * 0.4) + 's ease-out forwards;';
+            sparkle.style.cssText = 'position:fixed;width:6px;height:6px;background:rgba(255,255,255,0.9);border-radius:50%;pointer-events:none;z-index:10;box-shadow:0 0 10px rgba(255,255,255,0.6);animation:sparkleFlash ' + (0.4 + Math.random() * 0.6) + 's ease-out forwards;';
             sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
             sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
             document.body.appendChild(sparkle);
-            setTimeout(function() { sparkle.remove(); }, 1000);
+            setTimeout(function() { sparkle.remove(); }, 1500);
         }
     }
 
@@ -656,9 +668,15 @@ function initHeroTitle() {
             if (letter.classList.contains('space')) return;
             letter.style.animation = 'none';
             void letter.offsetWidth;
-            letter.style.animation = 'letterReveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
-            letter.style.animationDelay = (0.03 * i) + 's';
+            letter.style.animation = 'reassemble 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
+            letter.style.animationDelay = (i * 0.04) + 's';
         });
+        const reassembleDuration = letters.length * 0.04 * 1000 + 1000;
+        setTimeout(function() {
+            letters.forEach(function(l) {
+                if (!l.classList.contains('space')) l.classList.add('float');
+            });
+        }, reassembleDuration);
     }
 
     title.addEventListener('mouseenter', function() {
