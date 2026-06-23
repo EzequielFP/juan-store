@@ -10,16 +10,22 @@
 </head>
 <body>
     <!-- Header -->
-    <header>
+    <header id="header">
         <a href="#" class="logo">🇨🇴 JUAN STORE</a>
         <nav>
             <a href="#productos">Productos</a>
             <a href="#nosotros">Nosotros</a>
             <a href="#contacto">Contacto</a>
         </nav>
-        <a href="https://wa.me/573184170976" class="header-whatsapp" target="_blank">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
+        <div class="header-right">
+            <a href="https://wa.me/573184170976" class="header-whatsapp" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <button class="cart-btn" id="cartBtn" aria-label="Carrito">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+        </div>
     </header>
 
     <!-- Hero con productos -->
@@ -37,25 +43,60 @@
         </div>
     </section>
 
+    <!-- Filtros -->
+    <section class="filters-section">
+        <div class="filters-container">
+            <div class="filter-group">
+                <label>Marca</label>
+                <select id="filterBrand">
+                    <option value="">Todas las marcas</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Categoría</label>
+                <select id="filterCategory">
+                    <option value="">Todas las categorías</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Niño">Niño</option>
+                    <option value="Unisex">Unisex</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Precio</label>
+                <select id="filterPrice">
+                    <option value="">Todos los precios</option>
+                    <option value="0-50000">Hasta $50.000</option>
+                    <option value="50000-70000">$50.000 - $70.000</option>
+                    <option value="70000-100000">$70.000 - $100.000</option>
+                    <option value="100000">Más de $100.000</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Talla</label>
+                <select id="filterSize">
+                    <option value="">Todas las tallas</option>
+                </select>
+            </div>
+            <button class="btn-clear" id="clearFilters">Limpiar filtros</button>
+        </div>
+        <div class="results-info">
+            <span id="resultsCount">0 productos</span>
+        </div>
+    </section>
+
     <!-- Marcas -->
     <section class="brands-section">
         <p class="brands-label">Las mejores marcas</p>
-        <div class="brands-grid">
-            <span>NIKE</span>
-            <span>ADIDAS</span>
-            <span>LACOSTE</span>
-            <span>PUMA</span>
-            <span>NEW BALANCE</span>
-            <span>ON CLOUD</span>
-            <span>SKECHERS</span>
-            <span>HUGO BOSS</span>
+        <div class="brands-grid" id="brandsGrid">
+            <!-- Marcas cargadas dinámicamente -->
         </div>
     </section>
 
     <!-- Catálogo completo -->
     <section class="catalog-section" id="catalogo">
         <div class="section-header">
-            <h2>Catálogo</h2>
+            <h2>Catálogo Completo</h2>
             <p>Todos nuestros productos</p>
         </div>
         <div class="product-grid" id="productGrid">
@@ -112,10 +153,44 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Button -->
+    <!-- WhatsApp Float -->
     <a href="https://wa.me/573184170976?text=Hola!%20Quiero%20información%20sobre%20sus%20productos" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <!-- Lightbox para zoom -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Zoom de imagen">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Anterior">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Siguiente">›</button>
+        <img src="" alt="" id="lightboxImg">
+        <div class="lightbox-info" id="lightboxInfo"></div>
+    </div>
+
+    <!-- Carrito lateral -->
+    <aside class="cart-sidebar" id="cartSidebar" aria-label="Carrito de compras">
+        <div class="cart-header">
+            <h3>Carrito <span id="cartItemsCount">(0)</span></h3>
+            <button class="cart-close" id="cartClose" aria-label="Cerrar carrito">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items del carrito -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0 COP</span>
+            </div>
+            <button class="btn-checkout" id="checkoutBtn">
+                <i class="fab fa-whatsapp"></i> Enviar pedido por WhatsApp
+            </button>
+            <button class="btn-clear-cart" id="clearCart">Vaciar carrito</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Toast notifications -->
+    <div class="toast-container" id="toastContainer"></div>
 
     <script src="js/main.js"></script>
 </body>
