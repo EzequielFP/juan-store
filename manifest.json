@@ -1,0 +1,17 @@
+{
+  "name": "Victoria 79",
+  "short_name": "Victoria 79",
+  "description": "Calzado urbano premium en Medellín, Colombia",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
