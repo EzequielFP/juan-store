@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
     initLightbox();
     initCart();
-    initFilters();
     initCarousel();
 });
 

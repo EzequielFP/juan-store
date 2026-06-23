@@ -27,7 +27,7 @@
                          "id":  3,
                          "sizes":  "Euro 32",
                          "price":  60000,
-                         "category":  "Niño",
+                         "category":  "Niï¿½o",
                          "ref":  "5692",
                          "name":  "Nike Skate Kids",
                          "brand":  "Nike",
@@ -253,9 +253,9 @@
                          "brand":  "Reebok",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0094.jpg",
-                         "id":  23,
+                        {
+                            "image":  "IMG-20260115-WA0094.jpg",
+                            "id":  24,
                          "sizes":  "Euro 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -264,9 +264,9 @@
                          "brand":  "Nike",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0095.jpg",
-                         "id":  24,
+                        {
+                            "image":  "IMG-20260115-WA0095.jpg",
+                            "id":  25,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -275,9 +275,9 @@
                          "brand":  "Adidas",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0096.jpg",
-                         "id":  25,
+                        {
+                            "image":  "IMG-20260115-WA0096.jpg",
+                            "id":  26,
                          "sizes":  "Euro 36 al 39",
                          "price":  40000,
                          "category":  "Mujer",
@@ -286,9 +286,9 @@
                          "brand":  "New Balance",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0097.jpg",
-                         "id":  26,
+                        {
+                            "image":  "IMG-20260115-WA0097.jpg",
+                            "id":  27,
                          "sizes":  "Euro 36",
                          "price":  50000,
                          "category":  "Mujer",
@@ -297,9 +297,9 @@
                          "brand":  "Balenciaga",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0098.jpg",
-                         "id":  27,
+                        {
+                            "image":  "IMG-20260115-WA0098.jpg",
+                            "id":  28,
                          "sizes":  "Euro 41",
                          "price":  50000,
                          "category":  "Hombre",
@@ -308,9 +308,9 @@
                          "brand":  "Nike",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0099.jpg",
-                         "id":  28,
+                        {
+                            "image":  "IMG-20260115-WA0099.jpg",
+                            "id":  29,
                          "sizes":  "Euro 40, 41, 42, 44",
                          "price":  60000,
                          "category":  "Hombre",
@@ -319,9 +319,9 @@
                          "brand":  "Adidas",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0100.jpg",
-                         "id":  29,
+                        {
+                            "image":  "IMG-20260115-WA0100.jpg",
+                            "id":  30,
                          "sizes":  "Euro 36 al 38",
                          "price":  70000,
                          "category":  "Mujer",
@@ -330,9 +330,9 @@
                          "brand":  "Nike",
                          "note":  ""
                      },
-                     {
-                         "image":  "IMG-20260115-WA0101.jpg",
-                         "id":  30,
+                        {
+                            "image":  "IMG-20260115-WA0101.jpg",
+                            "id":  31,
                          "sizes":  "Euro 37",
                          "price":  60000,
                          "category":  "Mujer",
@@ -341,9 +341,9 @@
                          "brand":  "New Balance",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0099.jpg",
-                         "id":  31,
+                        {
+                            "image":  "IMG-20260115-WA0099.jpg",
+                            "id":  32,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -352,9 +352,9 @@
                          "brand":  "Adidas",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0102.jpg",
-                         "id":  32,
+                        {
+                            "image":  "IMG-20260115-WA0102.jpg",
+                            "id":  33,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -363,9 +363,9 @@
                          "brand":  "New Balance",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0103.jpg",
-                         "id":  33,
+                        {
+                            "image":  "IMG-20260115-WA0103.jpg",
+                            "id":  34,
                          "sizes":  "Euro 36 al 39",
                          "price":  60000,
                          "category":  "Mujer",
@@ -374,9 +374,9 @@
                          "brand":  "Nike",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0104.jpg",
-                         "id":  34,
+                        {
+                            "image":  "IMG-20260115-WA0104.jpg",
+                            "id":  35,
                          "sizes":  "Euro 36 y 37",
                          "price":  70000,
                          "category":  "Mujer",
@@ -385,9 +385,9 @@
                          "brand":  "Nike",
                          "note":  ""
                      },
-                     {
-                         "image":  "IMG-20260115-WA0105.jpg",
-                         "id":  35,
+                        {
+                            "image":  "IMG-20260115-WA0105.jpg",
+                            "id":  36,
                          "sizes":  "Euro 36 y 39",
                          "price":  70000,
                          "category":  "Mujer",
@@ -396,9 +396,9 @@
                          "brand":  "Nike",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0106.jpg",
-                         "id":  36,
+                        {
+                            "image":  "IMG-20260115-WA0106.jpg",
+                            "id":  37,
                          "sizes":  "Euro 40 y 41",
                          "price":  60000,
                          "category":  "Hombre",
@@ -407,9 +407,9 @@
                          "brand":  "Adidas",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0107.jpg",
-                         "id":  37,
+                        {
+                            "image":  "IMG-20260115-WA0107.jpg",
+                            "id":  38,
                          "sizes":  "Euro 37",
                          "price":  60000,
                          "category":  "Mujer",
@@ -418,9 +418,9 @@
                          "brand":  "Nike",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0108.jpg",
-                         "id":  38,
+                        {
+                            "image":  "IMG-20260115-WA0108.jpg",
+                            "id":  39,
                          "sizes":  "Euro 36 y 37",
                          "price":  60000,
                          "category":  "Mujer",
@@ -429,9 +429,9 @@
                          "brand":  "Nike",
                          "note":  "NO CAMBIO, NO GARANTIA"
                      },
-                     {
-                         "image":  "IMG-20260115-WA0109.jpg",
-                         "id":  39,
+                        {
+                            "image":  "IMG-20260115-WA0109.jpg",
+                            "id":  40,
                          "sizes":  "Euro 39",
                          "price":  70000,
                          "category":  "Mujer",
@@ -440,9 +440,9 @@
                          "brand":  "Adidas",
                          "note":  ""
                      },
-                     {
-                         "image":  "IMG-20260115-WA0110.jpg",
-                         "id":  40,
+                        {
+                            "image":  "IMG-20260115-WA0110.jpg",
+                            "id":  41,
                          "sizes":  "Euro 41 al 43",
                          "price":  70000,
                          "category":  "Hombre",
