@@ -34,17 +34,19 @@ function displayShowcase(products) {
     const showcase = document.getElementById('productsShowcase');
     if (!showcase) return;
     const showcaseProducts = products.slice(0, 6);
-    showcase.innerHTML = showcaseProducts.map(product => {
+    showcase.innerHTML = showcaseProducts.map((product, i) => {
         const imgPath = 'images/' + product.image;
-        return '<div class=\"showcase-card\" data-id=\"' + product.id + '\">' +
-            '<img src=\"' + imgPath + '\" alt=\"' + product.name + '\" loading=\"lazy\" onclick=\"openLightbox(' + product.id + ')\">' +
-            '<div class=\"card-info\">' +
-                '<div class=\"card-brand\">' + product.brand + '</div>' +
-                '<div class=\"card-name\">' + product.name + '</div>' +
-                '<div class=\"card-price\">' + formatPrice(product.price) + '</div>' +
+        return '<div class="tilt-container"><div class="showcase-card tilt-card" data-id="' + product.id + '" style="animation-delay:' + (0.05 + i * 0.07) + 's">' +
+            '<img src="' + imgPath + '" alt="' + product.name + '" loading="lazy" onclick="openLightbox(' + product.id + ')">' +
+            '<div class="card-glow"></div>' +
+            '<div class="card-info">' +
+                '<div class="card-brand">' + product.brand + '</div>' +
+                '<div class="card-name">' + product.name + '</div>' +
+                '<div class="card-price">' + formatPrice(product.price) + '</div>' +
             '</div>' +
-        '</div>';
+        '</div></div>';
     }).join('');
+    setTimeout(initTilt, 100);
 }
 
 function displayCatalog(products) {
@@ -53,18 +55,20 @@ function displayCatalog(products) {
     grid.innerHTML = products.map((product, index) => {
         const imgPath = 'images/' + product.image;
         const noteHtml = product.note ? '<div class=\"product-note\">' + product.note + '</div>' : '';
-        return '<div class=\"product-card fade-in stagger-' + ((index % 6) + 1) + '\" data-id=\"' + product.id + '\">' +
+        return '<div class=\"product-card tilt-card\" data-id=\"' + product.id + '\" style=\"animation-delay:' + (0.03 * (index % 8)) + 's\">' +
             '<img src=\"' + imgPath + '\" alt=\"' + product.name + '\" loading=\"lazy\" onclick=\"openLightbox(' + product.id + ')\">' +
+            '<div class=\"card-glow\"></div>' +
             '<div class=\"product-info\">' +
                 '<div class=\"product-brand\">' + product.brand + '</div>' +
                 '<div class=\"product-name\">' + product.name + '</div>' +
                 '<div class=\"product-price\">' + formatPrice(product.price) + '</div>' +
                 '<div class=\"product-sizes\">Tallas: ' + product.sizes + '</div>' +
                 noteHtml +
-                '<button class=\"add-to-cart\" onclick=\"event.stopPropagation(); addToCart(' + product.id + ')\" style=\"margin-top:0.8rem;width:100%;padding:0.6rem;background:var(--black);color:white;border:none;border-radius:6px;font-weight:600;cursor:pointer;\"><i class=\"fas fa-cart-plus\"></i> Agregar al carrito</button>' +
+                '<button class=\"add-to-cart\" onclick=\"event.stopPropagation(); addToCartWithFly(this, ' + product.id + ')\" style=\"margin-top:0.8rem;width:100%;padding:0.6rem;background:var(--black);color:white;border:none;border-radius:6px;font-weight:600;cursor:pointer;position:relative;overflow:hidden;\"><i class=\"fas fa-cart-plus\"></i> Agregar al carrito</button>' +
             '</div>' +
         '</div>';
     }).join('');
+    setTimeout(initTilt, 100);
     initScrollAnimations();
 }
 
@@ -338,7 +342,7 @@ function showToast(message, type = 'success') {
     toast.className = 'toast ' + type;
     toast.innerHTML = '<i class=\"fas fa-' + (type === 'success' ? 'check-circle' : 'exclamation-circle') + '\"></i><span>' + message + '</span>';
     container.appendChild(toast);
-    setTimeout(() => { toast.style.animation = 'slideIn 0.3s ease reverse'; setTimeout(() => toast.remove(), 300); }, 3000);
+    setTimeout(() => { toast.classList.add('exit'); setTimeout(() => toast.remove(), 500); }, 3000);
 }
 
 function initScrollAnimations() {
@@ -422,4 +426,170 @@ document.querySelectorAll('a[href^=\"#\"]').forEach(anchor => {
         const target = document.querySelector(this.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+});
+
+// =============================================
+//   3D TILT EFFECT ON CARDS
+// =============================================
+function initTilt() {
+    const cards = document.querySelectorAll('.showcase-card, .product-card');
+    cards.forEach(card => {
+        let timeout;
+        card.addEventListener('mousemove', function(e) {
+            if (timeout) cancelAnimationFrame(timeout);
+            timeout = requestAnimationFrame(() => {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -8;
+                const rotateY = ((x - centerX) / centerX) * 8;
+                const glow = this.querySelector('.card-glow');
+                if (glow) {
+                    const px = (x / rect.width) * 100;
+                    const py = (y / rect.height) * 100;
+                    glow.style.setProperty('--mx', px + '%');
+                    glow.style.setProperty('--my', py + '%');
+                }
+                if (!this.classList.contains('in-tilt')) {
+                    this.classList.add('in-tilt');
+                    this.style.transition = 'none';
+                }
+                this.style.transform = 'perspective(1000px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateY(-8px) scale(1.02)';
+            });
+        });
+        card.addEventListener('mouseleave', function() {
+            if (timeout) cancelAnimationFrame(timeout);
+            this.classList.remove('in-tilt');
+            this.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.6s ease';
+            this.style.transform = '';
+        });
+    });
+}
+
+// =============================================
+//   MAGNETIC BUTTONS
+// =============================================
+function initMagnetic() {
+    const magnets = document.querySelectorAll('.btn-checkout, .btn-download, .header-whatsapp, .whatsapp-float');
+    magnets.forEach(btn => {
+        btn.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            this.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+}
+
+// =============================================
+//   FLY TO CART ANIMATION
+// =============================================
+function flyToCart(element) {
+    const cartBtn = document.getElementById('cartBtn');
+    if (!cartBtn) return;
+    const startRect = element.getBoundingClientRect();
+    const endRect = cartBtn.getBoundingClientRect();
+    const flyer = element.cloneNode(true);
+    flyer.className = 'fly-item';
+    flyer.style.position = 'fixed';
+    flyer.style.zIndex = '3000';
+    flyer.style.pointerEvents = 'none';
+    flyer.style.width = startRect.width + 'px';
+    flyer.style.height = startRect.height + 'px';
+    flyer.style.top = startRect.top + 'px';
+    flyer.style.left = startRect.left + 'px';
+    flyer.style.objectFit = 'cover';
+    flyer.style.borderRadius = '8px';
+    document.body.appendChild(flyer);
+    const dx = endRect.left + endRect.width / 2 - startRect.left - startRect.width / 2;
+    const dy = endRect.top + endRect.height / 2 - startRect.top - startRect.height / 2;
+    flyer.animate([
+        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+        { transform: 'translate(' + (dx * 0.5) + 'px, ' + (dy * 0.5) + 'px) scale(0.5)', opacity: 0.8, offset: 0.5 },
+        { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(0.1)', opacity: 0 }
+    ], { duration: 800, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }).onfinish = function() {
+        flyer.remove();
+    };
+}
+
+// =============================================
+//   ANIMATED COUNTER
+// =============================================
+function animateCounter(element, target) {
+    if (!element) return;
+    const current = parseInt(element.textContent) || 0;
+    const start = 0;
+    const duration = 400;
+    const startTime = performance.now();
+    function update(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(start + (target - start) * eased);
+        element.textContent = value + ' producto' + (value !== 1 ? 's' : '');
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+// Override updateResultsCount with animation
+function updateResultsCount() {
+    const el = document.getElementById('resultsCount');
+    if (el) animateCounter(el, filteredProducts.length);
+}
+
+// =============================================
+//   PARALLAX HERO ON SCROLL
+// =============================================
+function initParallax() {
+    const hero = document.querySelector('.hero-bg-carousel');
+    const overlay = document.querySelector('.carousel-overlay');
+    if (!hero) return;
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            requestAnimationFrame(function() {
+                const scrollY = window.scrollY;
+                const maxScroll = window.innerHeight;
+                if (scrollY <= maxScroll) {
+                    const progress = scrollY / maxScroll;
+                    hero.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
+                    if (overlay) overlay.style.opacity = 1 - progress * 0.3;
+                }
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+function addToCartWithFly(btn, productId) {
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = '50%';
+    ripple.style.top = '50%';
+    ripple.style.marginLeft = -(size / 2) + 'px';
+    ripple.style.marginTop = -(size / 2) + 'px';
+    btn.appendChild(ripple);
+    setTimeout(function() { ripple.remove(); }, 600);
+    const img = btn.closest('.product-card, .showcase-card')?.querySelector('img');
+    if (img) flyToCart(img);
+    addToCart(productId);
+}
+
+function initEffects() {
+    initMagnetic();
+    initParallax();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(initEffects, 500);
 });
