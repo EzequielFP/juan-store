@@ -73,7 +73,7 @@ function displayCatalog(products) {
                 '<div class=\"product-price\">' + formatPrice(product.price) + '</div>' +
                 '<div class=\"product-sizes\">Tallas: ' + product.sizes + '</div>' +
                 noteHtml +
-                '<button class=\"add-to-cart\" onclick=\"event.stopPropagation(); addToCartWithFly(this, ' + product.id + ')\" style=\"margin-top:0.8rem;width:100%;padding:0.6rem;background:var(--black);color:white;border:none;border-radius:6px;font-weight:600;cursor:pointer;position:relative;overflow:hidden;\"><i class=\"fas fa-cart-plus\"></i> Agregar al carrito</button>' +
+                '<button class=\"add-to-cart\" onclick=\"event.stopPropagation(); addToCartWithFly(this, ' + product.id + ')\" style=\"margin-top:0.8rem;width:100%;padding:0.6rem;background:var(--black);color:var(--white);border:none;border-radius:6px;font-weight:600;cursor:pointer;position:relative;overflow:hidden;\"><i class=\"fas fa-cart-plus\"></i> Agregar al carrito</button>' +
             '</div>' +
         '</div>';
     }).join('');
