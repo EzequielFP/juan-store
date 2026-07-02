@@ -1,5 +1,6 @@
 # Logs
 *.log
+logs/
 
 # OS files
 .DS_Store
@@ -9,16 +10,24 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Node (si usas)
+# Node
 node_modules/
 package-lock.json
-
-# Archivos grandes de imagen (GitHub tiene límite de 100MB)
-# Las imágenes ya están en el proyecto
 
 # Windows
 *.exe
 *.dll
 
-# Logs
-logs/
+# Images (340MB, hosted separately)
+images/
+
+# Internal scripts (not for production)
+generate-final.ps1
+catalogo-generator.html
+csv-to-json.html
+
+# Product data CSVs
+*.csv
+
+# Generated catalog (redundant with products.json)
+products-catalog.json
