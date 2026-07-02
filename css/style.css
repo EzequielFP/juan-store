@@ -258,13 +258,7 @@ nav a:hover::after { width: 100%; }
 .card-price { font-size: 1rem; font-weight: 700; color: var(--black); }
 
 /* =================================== SECTION TRANSITIONS =================================== */
-section {
-  opacity: 0;
-  transform: translateY(40px);
-  filter: blur(4px);
-  transition: opacity 0.9s var(--smooth-in), transform 0.9s var(--smooth-in), filter 0.9s var(--smooth-in);
-}
-section.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+section { }
 
 .reveal-child {
   opacity: 0;
@@ -274,7 +268,7 @@ section.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 .reveal-child.visible { opacity: 1; transform: translateY(0); }
 
 /* =================================== FILTROS =================================== */
-.filters-section { padding: 2rem 4rem; background: var(--surface); border-bottom: 1px solid var(--border); }
+.filters-section { padding: 2rem 4rem; background: var(--surface); border-bottom: 1px solid var(--border); opacity: 1; transform: none; filter: none; }
 .filters-container { max-width: 1400px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: flex-end; }
 .filter-group { display: flex; flex-direction: column; gap: 0.5rem; min-width: 160px; flex: 1; }
 .filter-group label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--gray-500); }
@@ -285,7 +279,7 @@ section.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 .results-info { max-width: 1400px; margin: 1rem auto 0; font-size: 0.9rem; color: var(--gray-500); transition: opacity 0.4s var(--smooth-in); }
 
 /* =================================== MARCAS =================================== */
-.brands-section { padding: 3rem 0; background: var(--gray-100); text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; }
+.brands-section { padding: 3rem 0; background: var(--gray-100); text-align: center; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; opacity: 1; transform: none; filter: none; }
 .brands-label { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; padding: 0 1rem; }
 .brands-marquee { overflow: hidden; position: relative; }
 .brands-track { display: flex; gap: 4rem; animation: brandsScroll 40s linear infinite; width: max-content; }
@@ -298,7 +292,7 @@ section.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 }
 
 /* =================================== CATALOGO =================================== */
-.catalog-section { padding: 5rem 4rem; max-width: 1600px; margin: 0 auto; }
+.catalog-section { padding: 5rem 4rem; max-width: 1600px; margin: 0 auto; opacity: 1; transform: none; filter: none; }
 .section-header { text-align: center; margin-bottom: 3rem; animation: fadeInUp 0.8s ease; }
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .section-header h2 { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; }
@@ -349,7 +343,7 @@ section.visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 .btn-download:hover { background: var(--gray-700); transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
 
 /* =================================== NOSOTROS =================================== */
-.about-section { padding: 5rem 4rem; background: var(--gray-100); position: relative; border-top: 1px solid var(--border); }
+.about-section { padding: 5rem 4rem; background: var(--gray-100); position: relative; border-top: 1px solid var(--border); opacity: 1; transform: none; filter: none; }
 .about-content { max-width: 700px; margin: 0 auto; text-align: center; }
 .about-content h2 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
 .about-content > p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin-bottom: 2.5rem; }
