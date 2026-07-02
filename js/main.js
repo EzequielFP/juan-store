@@ -627,8 +627,6 @@ function updateResultsCount() {
 function initParallax() {
     const hero = document.querySelector('.hero-bg-carousel');
     const overlay = document.querySelector('.carousel-overlay');
-    const heroContent = document.querySelector('.hero-products');
-    const header = document.getElementById('header');
     if (!hero) return;
     let ticking = false;
     window.addEventListener('scroll', function() {
@@ -637,13 +635,8 @@ function initParallax() {
                 const scrollY = window.scrollY;
                 const maxScroll = window.innerHeight;
                 if (scrollY <= maxScroll) {
-                    const progress = scrollY / maxScroll;
                     hero.style.transform = 'translateY(' + (scrollY * 0.25) + ')';
-                    if (overlay) overlay.style.opacity = Math.max(0.3, 1 - progress * 0.8);
-                    if (heroContent) heroContent.style.opacity = Math.max(0.5, 1 - progress * 1.2);
-                } else {
-                    if (heroContent) heroContent.style.opacity = 1;
-                    if (overlay) overlay.style.opacity = 0.3;
+                    if (overlay) overlay.style.opacity = Math.max(0.3, 1 - (scrollY / maxScroll) * 0.8);
                 }
                 ticking = false;
             });
