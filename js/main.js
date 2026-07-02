@@ -640,7 +640,10 @@ function initParallax() {
                     const progress = scrollY / maxScroll;
                     hero.style.transform = 'translateY(' + (scrollY * 0.25) + ')';
                     if (overlay) overlay.style.opacity = Math.max(0.3, 1 - progress * 0.8);
-                    if (heroContent) heroContent.style.opacity = Math.max(0.2, 1 - progress * 1.2);
+                    if (heroContent) heroContent.style.opacity = Math.max(0.5, 1 - progress * 1.2);
+                } else {
+                    if (heroContent) heroContent.style.opacity = 1;
+                    if (overlay) overlay.style.opacity = 0.3;
                 }
                 ticking = false;
             });
