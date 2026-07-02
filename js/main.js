@@ -714,6 +714,97 @@ function initHeroTitle() {
     });
 }
 
+function exportarPDF() {
+    var cards = document.querySelectorAll('.product-card');
+    if (!cards.length) { showToast('No hay productos para exportar', 'error'); return; }
+    showToast('Generando PDF...', 'success');
+
+    var doc = new jspdf.jsPDF('p', 'mm', 'a4');
+    var pageW = 210, pageH = 297, margin = 12;
+    var cols = 3, cardW = 56, cardH = 20, gapX = 5, gapY = 4;
+    var startX = margin + (pageW - margin * 2 - (cardW * cols + gapX * (cols - 1))) / 2;
+    var x = startX, y = 22, col = 0;
+
+    var filtros = [];
+    var fb = document.getElementById('filterBrand');
+    var fc = document.getElementById('filterCategory');
+    var fp = document.getElementById('filterPrice');
+    var fs = document.getElementById('filterSize');
+    if (fb && fb.value) filtros.push('Marca: ' + fb.value);
+    if (fc && fc.value) filtros.push('Categoria: ' + fc.value);
+    if (fp && fp.value) {
+        var pts = fp.value.split('-');
+        filtros.push('Precio: $' + Number(pts[0]).toLocaleString('es-CO') + (pts[1] ? ' - $' + Number(pts[1]).toLocaleString('es-CO') : '+'));
+    }
+    if (fs && fs.value) filtros.push('Talla: ' + fs.value);
+    var txtFiltros = filtros.length ? 'Filtros: ' + filtros.join(' | ') : '';
+
+    function drawHeader() {
+        if (y > 22) doc.addPage();
+        y = 22; col = 0; x = startX;
+        doc.setFontSize(16);
+        doc.setFont('helvetica', 'bold');
+        doc.text('VICTORIA 79', pageW / 2, y, { align: 'center' });
+        y += 7;
+        doc.setFontSize(11);
+        doc.setFont('helvetica', 'normal');
+        doc.text('Catalogo de productos', pageW / 2, y, { align: 'center' });
+        y += 5;
+        doc.setFontSize(8);
+        doc.text(new Date().toLocaleDateString('es-CO') + ' | ' + cards.length + ' productos', pageW / 2, y, { align: 'center' });
+        y += 4;
+        if (txtFiltros) {
+            doc.setFontSize(7);
+            doc.text(txtFiltros, pageW / 2, y, { align: 'center' });
+            y += 4;
+        }
+        doc.setDrawColor(180);
+        doc.line(margin, y, pageW - margin, y);
+        y += 6;
+    }
+
+    drawHeader();
+
+    for (var i = 0; i < cards.length; i++) {
+        if (y + cardH > pageH - margin) { drawHeader(); }
+
+        var name = cards[i].querySelector('.product-name');
+        var brand = cards[i].querySelector('.product-brand');
+        var price = cards[i].querySelector('.product-price');
+        var sizes = cards[i].querySelector('.product-sizes');
+        if (!name) continue;
+
+        doc.setDrawColor(200);
+        doc.setFillColor(250, 250, 250);
+        doc.roundedRect(x, y, cardW, cardH, 2, 2, 'FD');
+
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.text(name.textContent, x + 2, y + 5, { maxWidth: cardW - 4 });
+
+        doc.setFont('helvetica', 'normal');
+        doc.setFontSize(7);
+        doc.text((brand ? brand.textContent : ''), x + 2, y + 10, { maxWidth: cardW - 4 });
+
+        doc.setFontSize(8);
+        doc.setFont('helvetica', 'bold');
+        doc.setTextColor(180, 140, 60);
+        doc.text((price ? price.textContent : ''), x + 2, y + 15, { maxWidth: cardW - 4 });
+
+        doc.setTextColor(0);
+        doc.setFontSize(6.5);
+        doc.setFont('helvetica', 'normal');
+        doc.text((sizes ? sizes.textContent : ''), x + 2, y + 19, { maxWidth: cardW - 4 });
+
+        col++;
+        if (col >= cols) { col = 0; x = startX; y += cardH + gapY; }
+        else { x += cardW + gapX; }
+    }
+
+    doc.save('catalogo-victoria79.pdf');
+    showToast('PDF exportado: ' + cards.length + ' productos', 'success');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     setTimeout(initEffects, 500);
 });

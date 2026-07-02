@@ -164,9 +164,9 @@
         </div>
         <div class="pagination" id="pagination"></div>
         <div class="catalog-download">
-            <a href="catalogo-generator.html" class="btn-download" target="_blank">
-                <i class="fas fa-file-pdf"></i> Descargar Catálogo PDF
-            </a>
+            <button class="btn-download" onclick="exportarPDF()">
+                <i class="fas fa-file-pdf"></i> Exportar Catálogo PDF
+            </button>
         </div>
     </section>
 
@@ -178,7 +178,7 @@
 <div class="about-features">
                 <div class="about-item reveal-child">
                     <i class="fas fa-check-circle"></i>
-                    <span>Productos 100% originales</span>
+                    <span>Calidad excepcional</span>
                 </div>
                 <div class="about-item reveal-child">
                     <i class="fas fa-check-circle"></i>
@@ -264,6 +264,7 @@
     <!-- Toast notifications -->
     <div class="toast-container" id="toastContainer"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

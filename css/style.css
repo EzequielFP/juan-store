@@ -341,9 +341,9 @@ section { }
 .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 .page-dots { color: var(--gray-400); padding: 0 0.3rem; font-size: 0.85rem; }
 .catalog-download { text-align: center; margin-top: 2rem; animation: fadeInUp 0.8s var(--smooth-in) 0.4s both; }
-.btn-download { display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2.5rem; background: var(--black); color: var(--white); text-decoration: none; font-weight: 600; transition: all 0.3s var(--spring-out); border-radius: 8px; }
-.btn-download:hover { background: var(--gray-700); transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+.btn-download { display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2.5rem; background: var(--black); color: var(--white); text-decoration: none; font-weight: 600; transition: all 0.3s var(--spring-out); border-radius: 8px; border: none; cursor: pointer; font-family: inherit; font-size: inherit; }
 
+.btn-download:hover { background: var(--gray-700); transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
 /* =================================== NOSOTROS =================================== */
 .about-section { padding: 5rem 4rem; background: var(--gray-100); position: relative; border-top: 1px solid var(--border); opacity: 1; transform: none; filter: none; }
 .about-content { max-width: 700px; margin: 0 auto; text-align: center; }
