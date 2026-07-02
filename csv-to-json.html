@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor CSV a JSON - Inventario Zapatos</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f5f5f5; color: #111; padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 1200px; width: 100%; }
+
+        h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 5px; }
+        .subtitle { color: #666; margin-bottom: 25px; font-size: 0.95rem; }
+
+        .card { background: #fff; border-radius: 12px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        .card h2 { font-size: 1.1rem; margin-bottom: 15px; color: #333; }
+
+        .upload-area { border: 2px dashed #ccc; border-radius: 8px; padding: 40px; text-align: center; cursor: pointer; transition: all 0.2s; }
+        .upload-area:hover, .upload-area.dragover { border-color: #111; background: #fafafa; }
+        .upload-area.has-file { border-color: #22c55e; background: #f0fdf4; }
+        .upload-area .icon { font-size: 2.5rem; margin-bottom: 10px; }
+        .upload-area p { color: #888; }
+        .upload-area input[type="file"] { display: none; }
+
+        .info-row { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px; font-size: 0.85rem; color: #666; }
+        .info-row span { background: #f5f5f5; padding: 4px 10px; border-radius: 4px; }
+
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        th { background: #f9f9f9; text-align: left; padding: 8px 10px; border-bottom: 2px solid #ddd; font-weight: 600; color: #555; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        td { padding: 6px 10px; border-bottom: 1px solid #eee; max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        tr:hover td { background: #fafafa; }
+        .preview-scroll { max-height: 400px; overflow-y: auto; border: 1px solid #eee; border-radius: 6px; }
+        .empty-msg { text-align: center; padding: 40px; color: #888; }
+
+        .btn-group { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn { padding: 10px 20px; border: none; border-radius: 8px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+        .btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .btn-primary { background: #111; color: #fff; }
+        .btn-primary:hover:not(:disabled) { background: #333; }
+        .btn-secondary { background: #e5e5e5; color: #333; }
+        .btn-secondary:hover:not(:disabled) { background: #d5d5d5; }
+        .btn-success { background: #22c55e; color: #fff; }
+        .btn-success:hover:not(:disabled) { background: #16a34a; }
+        .btn-danger { background: #ef4444; color: #fff; }
+        .btn-danger:hover:not(:disabled) { background: #dc2626; }
+
+        .output-area { position: relative; }
+        .output-area pre { background: #1e1e1e; color: #d4d4d4; padding: 16px; border-radius: 8px; overflow-x: auto; font-size: 0.75rem; line-height: 1.5; max-height: 400px; overflow-y: auto; }
+        .output-area .copy-btn { position: absolute; top: 10px; right: 10px; padding: 6px 12px; background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; cursor: pointer; font-size: 0.75rem; }
+        .output-area .copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+        .tabs { display: flex; gap: 0; margin-bottom: 15px; border-bottom: 2px solid #eee; }
+        .tab { padding: 10px 20px; cursor: pointer; border: none; background: none; font-size: 0.85rem; font-weight: 500; color: #888; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab.active { color: #111; border-bottom-color: #111; }
+        .tab:hover { color: #333; }
+
+        .toast { position: fixed; bottom: 20px; right: 20px; background: #111; color: #fff; padding: 12px 20px; border-radius: 8px; font-size: 0.85rem; opacity: 0; transform: translateY(10px); transition: all 0.3s; pointer-events: none; }
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        .help-box { background: #fefce8; border: 1px solid #fde68a; border-radius: 8px; padding: 16px; margin-bottom: 20px; font-size: 0.85rem; color: #92400e; line-height: 1.6; }
+        .help-box code { background: #fff7ed; padding: 2px 6px; border-radius: 3px; font-size: 0.8rem; }
+
+        @media (max-width: 768px) { body { padding: 10px; } .card { padding: 16px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Conversor CSV → JSON</h1>
+        <p class="subtitle">Sube tu inventario en CSV y conviertelo al formato JSON de tu tienda</p>
+
+        <div class="help-box">
+            <strong>Formato esperado del CSV (separado por punto y coma <code>;</code>):</strong><br>
+            <code>id;name;brand;category;ref;price;cost;sizes;image;color;stock;note</code><br><br>
+            <strong>Tallas:</strong> escribe como rango <code>36-39</code> o lista <code>40,41,42</code> (se convertira automaticamente a formato Euro).<br>
+            <strong>Descarga la plantilla</strong> para ver un ejemplo.
+        </div>
+
+        <div class="card">
+            <h2>1. Cargar archivo CSV</h2>
+            <div class="upload-area" id="dropZone">
+                <div class="icon">📂</div>
+                <p><strong>Haz clic o arrastra tu archivo CSV aqui</strong></p>
+                <p style="font-size:0.85rem;color:#999;margin-top:5px;">o pega el contenido CSV abajo</p>
+                <input type="file" id="fileInput" accept=".csv,.txt">
+            </div>
+            <div style="margin-top:12px;">
+                <textarea id="csvPaste" rows="4" style="width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:0.8rem;font-family:monospace;" placeholder="O pega aqui el contenido del CSV..."></textarea>
+            </div>
+            <div class="btn-group" style="margin-top:12px;">
+                <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">Seleccionar archivo</button>
+                <button class="btn btn-secondary" onclick="loadSampleCSV()">Cargar ejemplo</button>
+                <button class="btn btn-primary" onclick="processCSV()">Procesar CSV</button>
+            </div>
+            <div class="info-row" id="fileInfo"></div>
+        </div>
+
+        <div class="card">
+            <h2>2. Vista previa</h2>
+            <div class="preview-scroll" id="preview">
+                <div class="empty-msg">Carga un CSV para ver la vista previa</div>
+            </div>
+            <div class="info-row" id="rowCount"></div>
+        </div>
+
+        <div class="card">
+            <h2>3. Exportar JSON</h2>
+            <div class="tabs">
+                <button class="tab active" data-format="products" onclick="switchTab(this, 'products')">products.json</button>
+                <button class="tab" data-format="catalog" onclick="switchTab(this, 'catalog')">products-catalog.json</button>
+            </div>
+            <div class="btn-group" style="margin-bottom:15px;">
+                <button class="btn btn-success" onclick="exportJSON()" id="exportBtn" disabled>Descargar JSON</button>
+                <button class="btn btn-secondary" onclick="copyJSON()" id="copyBtn" disabled>Copiar al portapapeles</button>
+            </div>
+            <div class="output-area">
+                <pre id="jsonOutput">// Carga y procesa un CSV para ver el resultado aqui</pre>
+                <button class="copy-btn" onclick="copyJSON()" id="copySmallBtn" disabled>Copiar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        let parsedData = [];
+        let currentFormat = 'products';
+
+        // Plantilla CSV de ejemplo
+        const sampleCSV = `id;name;brand;category;ref;price;cost;sizes;image;color;stock;note
+1;Nike Kyrie Irving 2;Nike;Mujer;5459;70000;45000;36-39;IMG-20260115-WA0072.jpg;Negro/Blanco;10;
+2;Lacoste;Lacoste;Hombre;5723;60000;38000;40,41,42,44;IMG-20260115-WA0073.jpg;Blanco;5;
+3;Nike Skate Kids;Nike;Niño;5692;60000;35000;32;IMG-20260115-WA0074.jpg;Azul/Rojo;3;
+4;Nike Airmax SNDR;Nike;Mujer;5019;20000;15000;36-39;IMG-20260115-WA0075.jpg;Negro;8;NO CAMBIO NO GARANTIA
+5;Adidas Samba;Adidas;Mujer;4493;60000;40000;36-39;IMG-20260115-WA0080.jpg;Blanco;12;
+6;Hugo Boss;Hugo Boss;Hombre;5551;60000;42000;40;IMG-20260115-WA0081.jpg;Negro;4;
+7;New Balance 550;New Balance;Hombre;4326;60000;38000;40;IMG-20260115-WA0079.jpg;Gris;6;
+8;Puma California;Puma;Hombre;5251;50000;32000;40;IMG-20260115-WA0084.jpg;Azul;3;
+9;Nike Air TN;Nike;Hombre;5133;50000;35000;41-44;IMG-20260115-WA0086.jpg;Negro;7;
+10;Skechers Propulsion;Skechers;Hombre;5230;60000;38000;40,41;IMG-20260115-WA0087.jpg;Gris;5;`;
+
+        // --- Drag & Drop y File Upload ---
+        const dropZone = document.getElementById('dropZone');
+        const fileInput = document.getElementById('fileInput');
+
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('dragover'); });
+        dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+        dropZone.addEventListener('drop', (e) => { e.preventDefault(); dropZone.classList.remove('dragover'); const f = e.dataTransfer.files[0]; if (f) handleFile(f); });
+        fileInput.addEventListener('change', () => { if (fileInput.files[0]) handleFile(fileInput.files[0]); });
+
+        document.getElementById('csvPaste').addEventListener('input', function() {
+            if (this.value.trim()) {
+                dropZone.classList.add('has-file');
+                document.getElementById('fileInfo').innerHTML = '<span>Contenido pegado</span>';
+            } else {
+                dropZone.classList.remove('has-file');
+                document.getElementById('fileInfo').innerHTML = '';
+            }
+        });
+
+        function handleFile(file) {
+            if (!file.name.match(/\.(csv|txt)$/i)) { showToast('Solo archivos CSV o TXT'); return; }
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById('csvPaste').value = e.target.result;
+                dropZone.classList.add('has-file');
+                document.getElementById('fileInfo').innerHTML = `<span>Archivo: ${file.name}</span><span>Tamaño: ${(file.size/1024).toFixed(1)} KB</span>`;
+            };
+            reader.readAsText(file);
+        }
+
+        function loadSampleCSV() {
+            document.getElementById('csvPaste').value = sampleCSV;
+            dropZone.classList.add('has-file');
+            document.getElementById('fileInfo').innerHTML = '<span>Ejemplo cargado</span>';
+            processCSV();
+        }
+
+        // --- Procesar CSV ---
+        function processCSV() {
+            const raw = document.getElementById('csvPaste').value.trim();
+            if (!raw) { showToast('Pega un CSV o carga un archivo primero'); return; }
+
+            // Detectar delimitador: ; o ,
+            const lines = raw.split(/\r?\n/).filter(l => l.trim());
+            if (lines.length < 2) { showToast('El CSV debe tener al menos encabezados + 1 fila'); return; }
+
+            // Detectar delimitador por la primera linea
+            const headerLine = lines[0];
+            const delim = headerLine.includes(';') ? ';' : ',';
+
+            const headers = parseLine(headerLine, delim).map(h => h.trim().toLowerCase());
+            const expected = ['name', 'brand', 'category', 'ref', 'price', 'sizes', 'image'];
+            const missing = expected.filter(e => !headers.includes(e));
+            if (missing.length > 1) { showToast('Faltan columnas requeridas: ' + missing.join(', ') + '. Minimo: name, brand, category, ref, price, sizes, image'); return; }
+
+            parsedData = [];
+            for (let i = 1; i < lines.length; i++) {
+                const vals = parseLine(lines[i], delim);
+                const row = {};
+                headers.forEach((h, idx) => { row[h] = (vals[idx] || '').trim(); });
+                if (!row.name) continue;
+                row.id = row.id ? parseInt(row.id) || 0 : 0;
+                row.price = parseInt(row.price) || 0;
+                row.cost = row.cost ? parseInt(row.cost) || 0 : 0;
+                row.stock = row.stock ? parseInt(row.stock) || 0 : 0;
+                parsedData.push(row);
+            }
+
+            if (parsedData.length === 0) { showToast('No se encontraron productos validos'); return; }
+
+            // Asignar IDs automaticos si faltan
+            parsedData.forEach((p, i) => { if (!p.id) p.id = i + 1; });
+
+            renderPreview(parsedData);
+            document.getElementById('rowCount').innerHTML = `<span>${parsedData.length} productos cargados</span>`;
+            document.getElementById('exportBtn').disabled = false;
+            document.getElementById('copyBtn').disabled = false;
+            document.getElementById('copySmallBtn').disabled = false;
+            renderJSON();
+            showToast(`Se cargaron ${parsedData.length} productos`);
+        }
+
+        function parseLine(line, delim) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const ch = line[i];
+                if (ch === '"') { inQuotes = !inQuotes; continue; }
+                if (ch === delim && !inQuotes) { result.push(current); current = ''; continue; }
+                current += ch;
+            }
+            result.push(current);
+            return result;
+        }
+
+        function formatSizes(s) {
+            if (!s) return '';
+            s = s.trim();
+            if (s.startsWith('Euro')) return s;
+            // "36-39" → "Euro 36 al 39"
+            if (s.includes('-')) {
+                const parts = s.split('-').map(x => x.trim());
+                return `Euro ${parts[0]} al ${parts[1]}`;
+            }
+            // "40,41,42" → "Euro 40, 41, 42"
+            const parts = s.split(',').map(x => x.trim()).filter(Boolean);
+            if (parts.length > 1) return `Euro ${parts.join(', ')}`;
+            // "36" → "Euro 36"
+            if (parts.length === 1) return `Euro ${parts[0]}`;
+            return s;
+        }
+
+        // --- Vista Previa ---
+        function renderPreview(data) {
+            const cols = ['id', 'name', 'brand', 'category', 'ref', 'price', 'sizes', 'image', 'color', 'stock', 'note'];
+            const labels = ['ID', 'Nombre', 'Marca', 'Categoria', 'Ref', 'Precio', 'Tallas', 'Imagen', 'Color', 'Stock', 'Nota'];
+            let html = '<table><thead><tr>' + labels.map(l => `<th>${l}</th>`).join('') + '</tr></thead><tbody>';
+            data.forEach(p => {
+                html += '<tr>' + cols.map(c => {
+                    let val = p[c] || '';
+                    if (c === 'price') val = '$' + Number(val).toLocaleString('es-CO');
+                    if (c === 'sizes') val = formatSizes(val);
+                    return `<td title="${val}">${val}</td>`;
+                }).join('') + '</tr>';
+            });
+            html += '</tbody></table>';
+            document.getElementById('preview').innerHTML = html;
+        }
+
+        // --- JSON Output ---
+        function renderJSON() {
+            const json = generateJSON();
+            document.getElementById('jsonOutput').textContent = JSON.stringify(json, null, 2);
+        }
+
+        function generateJSON() {
+            if (currentFormat === 'products') {
+                return {
+                    products: parsedData.map(p => ({
+                        image: p.image || '',
+                        id: p.id,
+                        sizes: formatSizes(p.sizes),
+                        price: p.price,
+                        category: p.category || '',
+                        ref: p.ref || '',
+                        name: p.name,
+                        brand: p.brand || '',
+                        note: p.note || ''
+                    }))
+                };
+            } else {
+                return {
+                    products: parsedData.map(p => ({
+                        id: p.id,
+                        name: p.name,
+                        brand: p.brand || '',
+                        price: p.price,
+                        sizes: formatSizes(p.sizes),
+                        image: p.image || '',
+                        ref: p.ref || '',
+                        category: p.category || '',
+                        note: p.note || ''
+                    }))
+                };
+            }
+        }
+
+        function getExportData() {
+            return generateJSON();
+        }
+
+        // --- Export ---
+        function exportJSON() {
+            if (!parsedData.length) return;
+            const json = getExportData();
+            const filename = currentFormat === 'products' ? 'products.json' : 'products-catalog.json';
+            const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast(`Descargado ${filename}`);
+        }
+
+        function copyJSON() {
+            if (!parsedData.length) return;
+            const json = getExportData();
+            navigator.clipboard.writeText(JSON.stringify(json, null, 2)).then(() => {
+                showToast('Copiado al portapapeles');
+            }).catch(() => {
+                // Fallback
+                const ta = document.createElement('textarea');
+                ta.value = JSON.stringify(json, null, 2);
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('Copiado al portapapeles');
+            });
+        }
+
+        // --- Tabs ---
+        function switchTab(el, format) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            currentFormat = format;
+            renderJSON();
+        }
+
+        // --- Toast ---
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove('show'), 2500);
+        }
+    </script>
+</body>
+</html>

@@ -3,6 +3,8 @@ let allProducts = [];
 let filteredProducts = [];
 let cart = [];
 let currentLightboxIndex = 0;
+const PRODUCTS_PER_PAGE = 240;
+let currentPage = 1;
 
 document.addEventListener('DOMContentLoaded', function() {
     loadProducts();
@@ -12,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initCart();
     initCarousel();
     initHeroTitle();
+    initMobileMenu();
 });
 
 function loadProducts() {
@@ -52,8 +55,13 @@ function displayShowcase(products) {
 
 function displayCatalog(products) {
     const grid = document.getElementById('productGrid');
+    const pagination = document.getElementById('pagination');
     if (!grid) return;
-    grid.innerHTML = products.map((product, index) => {
+    const totalPages = Math.ceil(products.length / PRODUCTS_PER_PAGE);
+    if (currentPage > totalPages) currentPage = 1;
+    const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+    const pageProducts = products.slice(start, start + PRODUCTS_PER_PAGE);
+    grid.innerHTML = pageProducts.map((product, index) => {
         const imgPath = 'images/' + product.image;
         const noteHtml = product.note ? '<div class=\"product-note\">' + product.note + '</div>' : '';
         return '<div class=\"product-card tilt-card\" data-id=\"' + product.id + '\" style=\"animation-delay:' + (0.03 * (index % 8)) + 's\">' +
@@ -69,8 +77,31 @@ function displayCatalog(products) {
             '</div>' +
         '</div>';
     }).join('');
+    if (pagination) renderPagination(products.length, totalPages);
     setTimeout(initTilt, 100);
-    initScrollAnimations();
+}
+
+function renderPagination(total, totalPages) {
+    const pagination = document.getElementById('pagination');
+    if (!pagination || totalPages <= 1) { pagination.innerHTML = ''; return; }
+    let html = '<button class="page-btn" onclick="goToPage(' + (currentPage - 1) + ')" ' + (currentPage <= 1 ? 'disabled' : '') + '><i class="fas fa-chevron-left"></i></button>';
+    let startPage = Math.max(1, currentPage - 2);
+    let endPage = Math.min(totalPages, currentPage + 2);
+    if (startPage > 1) html += '<button class="page-btn" onclick="goToPage(1)">1</button>';
+    if (startPage > 2) html += '<span class="page-dots">...</span>';
+    for (let i = startPage; i <= endPage; i++) {
+        html += '<button class="page-btn' + (i === currentPage ? ' active' : '') + '" onclick="goToPage(' + i + ')">' + i + '</button>';
+    }
+    if (endPage < totalPages - 1) html += '<span class="page-dots">...</span>';
+    if (endPage < totalPages) html += '<button class="page-btn" onclick="goToPage(' + totalPages + ')">' + totalPages + '</button>';
+    html += '<button class="page-btn" onclick="goToPage(' + (currentPage + 1) + ')" ' + (currentPage >= totalPages ? 'disabled' : '') + '><i class="fas fa-chevron-right"></i></button>';
+    pagination.innerHTML = html;
+}
+
+function goToPage(page) {
+    currentPage = page;
+    displayCatalog(filteredProducts);
+    document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function formatPrice(price) {
@@ -133,8 +164,10 @@ function applyFilters() {
         return true;
     });
 
+    currentPage = 1;
     displayCatalog(filteredProducts);
     updateResultsCount();
+    document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function clearFilters() {
@@ -142,9 +175,11 @@ function clearFilters() {
         const el = document.getElementById(id);
         if (el) el.value = '';
     });
+    currentPage = 1;
     filteredProducts = [...allProducts];
     displayCatalog(filteredProducts);
     updateResultsCount();
+    document.getElementById('catalogo')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function updateResultsCount() {
@@ -155,7 +190,34 @@ function updateResultsCount() {
 function populateBrands(products) {
     const brands = [...new Set(products.map(p => p.brand).filter(Boolean))].sort();
     const grid = document.getElementById('brandsGrid');
-    if (grid) grid.innerHTML = brands.map(b => '<span>' + b + '</span>').join('');
+    if (grid) grid.innerHTML = brands.map(b => '<span>' + b + '</span>').join('') + brands.map(b => '<span>' + b + '</span>').join('');
+    if (brands.length > 0) updateHeroStats(products, brands);
+}
+
+function updateHeroStats(products, brands) {
+    const totalProducts = products.length;
+    const totalBrands = brands.length;
+    const categories = [...new Set(products.map(p => p.category).filter(Boolean))];
+    const totalCategories = categories.length;
+    animateStat('statProducts', totalProducts);
+    animateStat('statBrands', totalBrands);
+    animateStat('statCategories', totalCategories);
+}
+
+function animateStat(id, target) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const duration = 2000;
+    const start = 0;
+    const startTime = performance.now();
+    function frame(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        el.textContent = Math.round(start + (target - start) * eased).toLocaleString('es-CO');
+        if (progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
 }
 
 function initLightbox() {
@@ -347,30 +409,43 @@ function showToast(message, type = 'success') {
 }
 
 function initScrollAnimations() {
-    const observerOptions = { threshold: 0.08, rootMargin: '0px 0px -40px 0px' };
-    const observer = new IntersectionObserver((entries) => {
+    const sectionOptions = { threshold: 0.06, rootMargin: '0px 0px -20px 0px' };
+    const childOptions = { threshold: 0.1, rootMargin: '0px 0px -30px 0px' };
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+                const children = entry.target.querySelectorAll('.reveal-child');
+                children.forEach((child, i) => {
+                    setTimeout(() => child.classList.add('visible'), i * 80);
+                });
+                sectionObserver.unobserve(entry.target);
             }
         });
-    }, observerOptions);
-    document.querySelectorAll('.fade-in').forEach(el => {
-        if (!el.classList.contains('visible')) observer.observe(el);
-    });
+    }, sectionOptions);
+    const childObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, childOptions);
     document.querySelectorAll('section').forEach(el => {
-        if (!el.classList.contains('visible')) observer.observe(el);
+        if (!el.classList.contains('visible')) {
+            sectionObserver.observe(el);
+            el.querySelectorAll('.reveal-child').forEach(ch => childObserver.observe(ch));
+        }
     });
 }
 
 function initHeaderScroll() {
     const header = document.getElementById('header');
-    if (!header) return;
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) header.classList.add('scrolled');
-        else header.classList.remove('scrolled');
-    });
+    const sentinel = document.getElementById('productos');
+    if (!header || !sentinel) return;
+    const observer = new IntersectionObserver(([entry]) => {
+        header.classList.toggle('scrolled', !entry.isIntersecting);
+    }, { threshold: 0 });
+    observer.observe(sentinel);
 }
 
 function initCarousel() {
@@ -473,15 +548,17 @@ function initTilt() {
 //   MAGNETIC BUTTONS
 // =============================================
 function initMagnetic() {
-    const magnets = document.querySelectorAll('.btn-checkout, .btn-download, .header-whatsapp, .whatsapp-float');
+    const magnets = document.querySelectorAll('.btn-checkout, .btn-download, .header-whatsapp, .whatsapp-float, .btn-clear');
     magnets.forEach(btn => {
         btn.addEventListener('mousemove', function(e) {
             const rect = this.getBoundingClientRect();
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
-            this.style.transform = 'translate(' + (x * 0.2) + 'px, ' + (y * 0.2) + 'px)';
+            this.style.transition = 'transform 0.15s ease-out';
+            this.style.transform = 'translate(' + (x * 0.25) + 'px, ' + (y * 0.25) + 'px) scale(1.02)';
         });
         btn.addEventListener('mouseleave', function() {
+            this.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
             this.style.transform = '';
         });
     });
@@ -550,6 +627,8 @@ function updateResultsCount() {
 function initParallax() {
     const hero = document.querySelector('.hero-bg-carousel');
     const overlay = document.querySelector('.carousel-overlay');
+    const heroContent = document.querySelector('.hero-products');
+    const header = document.getElementById('header');
     if (!hero) return;
     let ticking = false;
     window.addEventListener('scroll', function() {
@@ -559,8 +638,9 @@ function initParallax() {
                 const maxScroll = window.innerHeight;
                 if (scrollY <= maxScroll) {
                     const progress = scrollY / maxScroll;
-                    hero.style.transform = 'translateY(' + (scrollY * 0.3) + 'px)';
-                    if (overlay) overlay.style.opacity = 1 - progress * 0.3;
+                    hero.style.transform = 'translateY(' + (scrollY * 0.25) + ')';
+                    if (overlay) overlay.style.opacity = Math.max(0.3, 1 - progress * 0.8);
+                    if (heroContent) heroContent.style.opacity = Math.max(0.2, 1 - progress * 1.2);
                 }
                 ticking = false;
             });
@@ -586,6 +666,22 @@ function addToCartWithFly(btn, productId) {
     addToCart(productId);
 }
 
+function initMobileMenu() {
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('mobileNavOverlay');
+    if (!hamburger || !mobileNav || !overlay) return;
+    function toggle() {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('open');
+        overlay.classList.toggle('active');
+        document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    }
+    hamburger.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', toggle));
+}
+
 function initEffects() {
     initMagnetic();
     initParallax();
@@ -599,93 +695,26 @@ function initHeroTitle() {
     if (!title) return;
     const text = title.textContent;
     const letters = [];
-    let disintegrating = false;
-    let reassembleTimer;
-
     title.textContent = '';
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
         const span = document.createElement('span');
         span.className = 'letter' + (char === ' ' ? ' space' : '');
         span.textContent = char === ' ' ? '\u00A0' : char;
-        span.style.animationDelay = (0.07 * i) + 's';
+        span.style.animationDelay = (0.05 * i) + 's';
         span.dataset.index = i;
         title.appendChild(span);
-        letters.push(span);
-    }
-
-    const totalDuration = text.length * 0.07 * 1000 + 1200;
-
-    function addFloatAnimation() {
-        letters.forEach((letter, i) => {
-            if (letter.classList.contains('space')) return;
-            letter.classList.add('float');
-        });
-    }
-
-    setTimeout(addFloatAnimation, totalDuration);
-
-    function disintegrate() {
-        if (disintegrating) return;
-        disintegrating = true;
-        clearTimeout(reassembleTimer);
-        letters.forEach((letter, i) => {
-            if (letter.classList.contains('space')) return;
-            letter.classList.remove('float');
-            const angle = (i / letters.length) * 360;
-            const rot = 60 + Math.random() * 180;
-            const z = -80 - Math.random() * 150;
-            const y = 30 + Math.random() * 80;
-            const x = (Math.random() - 0.5) * 120;
-            letter.style.setProperty('--rot', rot + 'deg');
-            letter.style.setProperty('--z', z + 'px');
-            letter.style.setProperty('--y', y + 'px');
-            letter.style.setProperty('--x', x + 'px');
-            letter.style.animation = 'none';
-            void letter.offsetWidth;
-            letter.style.animation = 'disintegrate 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards';
-            letter.style.animationDelay = (i * 0.025) + 's';
-        });
-        addSparkles();
-    }
-
-    function addSparkles() {
-        const rect = title.getBoundingClientRect();
-        for (let i = 0; i < 20; i++) {
-            const sparkle = document.createElement('span');
-            sparkle.className = 'letter sparkle';
-            sparkle.style.cssText = 'position:fixed;width:6px;height:6px;background:rgba(255,255,255,0.9);border-radius:50%;pointer-events:none;z-index:10;box-shadow:0 0 10px rgba(255,255,255,0.6);animation:sparkleFlash ' + (0.4 + Math.random() * 0.6) + 's ease-out forwards;';
-            sparkle.style.left = (rect.left + Math.random() * rect.width) + 'px';
-            sparkle.style.top = (rect.top + Math.random() * rect.height) + 'px';
-            document.body.appendChild(sparkle);
-            setTimeout(function() { sparkle.remove(); }, 1500);
-        }
-    }
-
-    function reassemble() {
-        disintegrating = false;
-        letters.forEach((letter, i) => {
-            if (letter.classList.contains('space')) return;
-            letter.style.animation = 'none';
-            void letter.offsetWidth;
-            letter.style.animation = 'reassemble 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards';
-            letter.style.animationDelay = (i * 0.04) + 's';
-        });
-        const reassembleDuration = letters.length * 0.04 * 1000 + 1000;
-        setTimeout(function() {
-            letters.forEach(function(l) {
-                if (!l.classList.contains('space')) l.classList.add('float');
-            });
-        }, reassembleDuration);
+        if (char !== ' ') letters.push(span);
     }
 
     title.addEventListener('mouseenter', function() {
-        clearTimeout(reassembleTimer);
-        disintegrate();
-    });
-
-    title.addEventListener('mouseleave', function() {
-        reassembleTimer = setTimeout(reassemble, 200);
+        letters.forEach(function(letter, i) {
+            if (letter.classList.contains('shimmer')) return;
+            setTimeout(function() {
+                letter.classList.add('shimmer');
+                setTimeout(function() { letter.classList.remove('shimmer'); }, 1800);
+            }, i * 40);
+        });
     });
 }
 

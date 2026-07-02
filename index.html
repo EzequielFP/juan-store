@@ -7,6 +7,7 @@
     <meta name="keywords" content="zapatos, tenis, calzado urbano, Nike, Adidas, Medellín, Victoria 79, zapatillas originales, Antioquia">
     <meta name="author" content="Victoria 79">
     <meta name="robots" content="index, follow">
+    <meta name="color-scheme" content="light dark">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -47,17 +48,11 @@
         <div class="carousel-overlay"></div><div class="carousel-dots" id="carouselDots"></div>
     </div>
 
-    <!-- Scroll Indicator -->
-    <div class="scroll-indicator" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">
-        <span>Scroll</span>
-        <div class="scroll-line"></div>
-    </div>
-
     <!-- Header -->
     <header id="header">
         <div class="header-flags">
-            <span class="flag" title="Colombia">🇨🇴</span>
-            <span class="flag" title="Antioquia">🟢⚪🟢</span>
+            <img src="images/Colombia.webp" alt="Colombia" class="flag-img" title="Colombia">
+            <img src="images/Antioquia.svg" alt="Antioquia" class="flag-img" title="Antioquia">
         </div>
         <a href="#" class="logo">VICTORIA 79</a>
         <nav>
@@ -66,6 +61,9 @@
             <a href="#contacto">Contacto</a>
         </nav>
         <div class="header-right">
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
             <a href="https://wa.me/573247432471" class="header-whatsapp" target="_blank">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
@@ -75,15 +73,29 @@
             </button>
         </div>
     </header>
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#productos">Productos</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#contacto">Contacto</a>
+    </div>
+    <div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
 
     <!-- Hero con productos -->
     <section class="hero-products visible" id="productos">
         <div class="hero-text">
             <h1 id="heroTitle">VICTORIA 79</h1>
             <p>Calzado urbano de las mejores marcas. Directo de Medellín para todo Colombia.</p>
-            <div class="hero-tags">
-                <span><img src="images/Colombia.webp" alt="Colombia" class="flag-sm" title="Colombia"> <img src="images/Antioquia.svg" alt="Antioquia" class="flag-sm" title="Antioquia"> Colombia & Antioquia</span>
-            </div>
+<div class="hero-tags">
+            <span><img src="images/Colombia.webp" alt="Colombia" class="flag-sm" title="Colombia"> <img src="images/Antioquia.svg" alt="Antioquia" class="flag-sm" title="Antioquia"> Colombia & Antioquia</span>
+        </div>
+        <div class="hero-stats" id="heroStats">
+            <div class="hero-stat"><span class="hero-stat-number" id="statProducts">0</span><span class="hero-stat-label">Productos</span></div>
+            <div class="hero-divider"></div>
+            <div class="hero-stat"><span class="hero-stat-number" id="statBrands">0</span><span class="hero-stat-label">Marcas</span></div>
+            <div class="hero-divider"></div>
+            <div class="hero-stat"><span class="hero-stat-number" id="statCategories">0</span><span class="hero-stat-label">Categorías</span></div>
+        </div>
         </div>
         <div class="products-showcase" id="productsShowcase">
             <!-- Products loaded here -->
@@ -106,7 +118,7 @@
                     <option value="Hombre">Hombre</option>
                     <option value="Mujer">Mujer</option>
                     <option value="Niño">Niño</option>
-                    <option value="Unisex">Unisex</option>
+                    <option value="Sin categoría">Sin categoría</option>
                 </select>
             </div>
             <div class="filter-group">
@@ -132,11 +144,12 @@
         </div>
     </section>
 
-    <!-- Marcas -->
+<!-- Marcas -->
     <section class="brands-section">
         <p class="brands-label">Las mejores marcas</p>
-        <div class="brands-grid" id="brandsGrid">
-            <!-- Marcas cargadas dinámicamente -->
+        <div class="brands-marquee">
+            <div class="brands-track" id="brandsGrid">
+            </div>
         </div>
     </section>
 
@@ -149,6 +162,7 @@
         <div class="product-grid" id="productGrid">
             <!-- Products loaded here -->
         </div>
+        <div class="pagination" id="pagination"></div>
         <div class="catalog-download">
             <a href="catalogo-generator.html" class="btn-download" target="_blank">
                 <i class="fas fa-file-pdf"></i> Descargar Catálogo PDF
@@ -161,16 +175,16 @@
         <div class="about-content">
             <h2>¿Quiénes somos?</h2>
             <p>Somos Victoria 79, tu tienda de calzado urbano ubicada en Medellín, Colombia. Ofrecemos productos de las mejores marcas del mercado a precios competitivos con envíos a toda Colombia.</p>
-            <div class="about-features">
-                <div class="about-item">
+<div class="about-features">
+                <div class="about-item reveal-child">
                     <i class="fas fa-check-circle"></i>
                     <span>Productos 100% originales</span>
                 </div>
-                <div class="about-item">
+                <div class="about-item reveal-child">
                     <i class="fas fa-check-circle"></i>
                     <span>Envíos a toda Colombia</span>
                 </div>
-                <div class="about-item">
+                <div class="about-item reveal-child">
                     <i class="fas fa-check-circle"></i>
                     <span>Atención por WhatsApp</span>
                 </div>
@@ -183,8 +197,8 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <div class="footer-flags">
-                    <span class="flag" title="Colombia">🇨🇴</span>
-                    <span class="flag" title="Antioquia">🟢⚪🟢</span>
+                    <img src="images/Colombia.webp" alt="Colombia" class="flag-img" title="Colombia">
+                    <img src="images/Antioquia.svg" alt="Antioquia" class="flag-img" title="Antioquia">
                 </div>
                 <h3>VICTORIA 79</h3>
                 <p>Tu tienda de calzado urbano en Medellín, Antioquia</p>
@@ -207,7 +221,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 Victoria 79. Todos los derechos reservados. | Medellín, Antioquia, Colombia 🇨🇴 🟢⚪🟢</p>
+            <p>© 2024 Victoria 79. Todos los derechos reservados. | Medellín, Antioquia, Colombia</p>
         </div>
     </footer>
 
